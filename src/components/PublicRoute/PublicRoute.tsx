@@ -2,13 +2,13 @@ import React, { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 
 interface PublicRouteProps {
-  userData: string | null;
+  userData: { token: string | null } | null; 
   children: ReactNode;
 }
 
 const PublicRoute: React.FC<PublicRouteProps> = ({ userData, children }) => {
-  if (userData) {
-    return <Navigate to="/home" />;
+  if (userData?.token) {
+    return <Navigate to="/" />;
   }
 
   return <>{children}</>;

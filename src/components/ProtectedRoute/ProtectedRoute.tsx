@@ -3,13 +3,14 @@ import { Navigate } from 'react-router-dom';
 
 interface ProtectedRouteProps {
   children: ReactNode;
-  userData: string | null; 
+  userData: { token: string | null } | null; 
 }
 
 export default function ProtectedRoute({ children, userData }: ProtectedRouteProps) {
-  if (!localStorage.getItem('userToken')) {
+  if (!userData?.token) {
     return <Navigate to="/login" />;
   } else {
     return <>{children}</>;
   }
 }
+
