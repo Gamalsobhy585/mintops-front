@@ -39,12 +39,12 @@ export default function Navbar({ userData, logOut }: NavbarProps) {
               </Link>
             </li>
             <li>
-              <Link className="text-sky-500 hover:text-sky-700" to="/create-team">
+              <Link className="text-sky-500 hover:text-sky-700" to="/teams/create">
                 Create a New Team
               </Link>
             </li>
             <li>
-              <Link className="text-sky-500 hover:text-sky-700" to="/my-teams">
+              <Link className="text-sky-500 hover:text-sky-700" to="/teams">
                 My Teams
               </Link>
             </li>
