@@ -1,26 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
+import '@fortawesome/fontawesome-free/css/all.css';
+import './App.scss';
+import { Offline } from 'react-detect-offline';
+import SyncLoader from 'react-spinners/SyncLoader';
+
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import Layout from './components/Layout/Layout';
 import Home from './components/Home/Home';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import PublicRoute from './components/PublicRoute/PublicRoute';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import NotFound from './components/NotFound/NotFound';
 import CreateTeam from './components/CreateTeam/CreateTeam';
 import Teams from './components/Teams/Teams';
 import TeamDetails from './components/TeamDetails/TeamDetails';
-import { Offline } from 'react-detect-offline';
 import CreateTask from './components/CreateTask/CreateTask';
 import Categories from './components/Categories/Categories';
 import EditTask from './components/EditTask/EditTask';
-import '@fortawesome/fontawesome-free/css/all.css';
-import axios from 'axios';
-import './App.scss';
-import Swal from 'sweetalert2';
-import Cookies from 'js-cookie';
+
+const queryClient = new QueryClient();
 
 interface UserData {
   token: string | null;
@@ -35,13 +40,13 @@ function App() {
       saveUserData({ token });
     }
     showCookieConsent();
+    getLocation(); // Fetch and store user location
   }, []);
 
   function saveUserData({ token }: UserData) {
     setUserData({ token });
   }
-  
-  
+
   const logOut = async () => {
     try {
       const token = localStorage.getItem('userToken');
@@ -73,9 +78,6 @@ function App() {
       }
     }
   };
-  
-  
-  
 
   const showCookieConsent = () => {
     const consent = Cookies.get('cookieConsent');
@@ -110,7 +112,25 @@ function App() {
       });
     }
   };
-  
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const location = `${position.coords.latitude},${position.coords.longitude}`;
+          Cookies.set('userlocation', location);
+        },
+        (error) => {
+          console.error('Error fetching location:', error);
+          Cookies.set('userlocation', 'Location unavailable');
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+      Cookies.set('userlocation', 'Geolocation not supported');
+    }
+  };
+
   const routers = createBrowserRouter([
     {
       path: '/',
@@ -131,7 +151,7 @@ function App() {
   ]);
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <div className="App">
         <ToastContainer />
       </div>
@@ -141,7 +161,7 @@ function App() {
         </div>
       </Offline>
       <RouterProvider router={routers} />
-    </>
+    </QueryClientProvider>
   );
 }
 
