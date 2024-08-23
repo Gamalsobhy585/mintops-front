@@ -44,7 +44,7 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
   };
 
   let validatorYup = Yup.object().shape({
-    name: Yup.string().min(3, 'Min length is 3 chars').max(10, 'Max length is 10 chars').required('Name is required'),
+    name: Yup.string().min(3, 'Min length is 3 chars').max(20, 'Max length is 20 chars').required('Name is required'),
     email: Yup.string().email('Email is invalid').required('Email is required'),
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
