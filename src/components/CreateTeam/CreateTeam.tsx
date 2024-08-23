@@ -4,6 +4,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const CreateTeam: React.FC = () => {
   const [teamName, setTeamName] = useState('');
@@ -51,22 +52,24 @@ const CreateTeam: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-10">
-      <label className="mb-2 text-lg font-medium">Team Name:</label>
-      <input
-        type="text"
-        value={teamName}
-        onChange={(e) => setTeamName(e.target.value)}
-        className="border border-gray-300 rounded p-2 w-full max-w-sm"
-      />
-      <button
-        onClick={handleCreateTeam}
-        className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
-      >
-        Create Team
-      </button>
-      <ToastContainer />
-    </div>
+    <><Helmet>
+      <meta charSet="utf-8" />
+      <title>Create New Team</title>
+    </Helmet><div className="flex flex-col items-center mt-10">
+        <label className="mb-2 text-lg font-medium">Team Name:</label>
+        <input
+          type="text"
+          value={teamName}
+          onChange={(e) => setTeamName(e.target.value)}
+          className="border border-gray-300 rounded p-2 w-full max-w-sm" />
+        <button
+          onClick={handleCreateTeam}
+          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
+        >
+          Create Team
+        </button>
+        <ToastContainer />
+      </div></>
   );
 };
 

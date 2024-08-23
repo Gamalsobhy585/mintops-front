@@ -7,6 +7,7 @@ import SyncLoader from 'react-spinners/SyncLoader';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet';
 
 interface Category {
   id: number;
@@ -185,189 +186,189 @@ const EditTask: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Edit Task</h2>
-      <form onSubmit={formik.handleSubmit} className="space-y-4">
-        {/* Title Input */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Title</label>
-          <input
-            type="text"
-            name="title"
-            value={formik.values.title}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className="mt-1 p-2 w-full border border-gray-300 rounded"
-            required
-          />
-          {formik.touched.title && formik.errors.title ? (
-            <div className="text-red-500 text-sm">{formik.errors.title}</div>
-          ) : null}
-        </div>
-        {/* Description Input */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Description</label>
-          <textarea
-            name="description"
-            value={formik.values.description}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className="mt-1 p-2 w-full border border-gray-300 rounded"
-            required
-          />
-          {formik.touched.description && formik.errors.description ? (
-            <div className="text-red-500 text-sm">{formik.errors.description}</div>
-          ) : null}
-        </div>
-        {/* Start Date Input */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Start Date</label>
-          <input
-            type="date"
-            name="start_date"
-            value={formik.values.start_date}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className="mt-1 p-2 w-full border border-gray-300 rounded"
-            required
-          />
-          {formik.touched.start_date && formik.errors.start_date ? (
-            <div className="text-red-500 text-sm">{formik.errors.start_date}</div>
-          ) : null}
-        </div>
-        {/* End Date Input */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">End Date</label>
-          <input
-            type="date"
-            name="end_date"
-            value={formik.values.end_date}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className="mt-1 p-2 w-full border border-gray-300 rounded"
-            required
-          />
-          {formik.touched.end_date && formik.errors.end_date ? (
-            <div className="text-red-500 text-sm">{formik.errors.end_date}</div>
-          ) : null}
-        </div>
-        {/* Status Select */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Status</label>
-          <select
-            name="status"
-            value={formik.values.status}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className="mt-1 p-2 w-full border border-gray-300 rounded"
-            required
-          >
-            <option value="not started">Not Started</option>
-            <option value="in progress">In Progress</option>
-            <option value="completed">Completed</option>
-          </select>
-          {formik.touched.status && formik.errors.status ? (
-            <div className="text-red-500 text-sm">{formik.errors.status}</div>
-          ) : null}
-        </div>
-        {/* Priority Select */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Priority</label>
-          <select
-            name="priority"
-            value={formik.values.priority}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className="mt-1 p-2 w-full border border-gray-300 rounded"
-            required
-          >
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </select>
-          {formik.touched.priority && formik.errors.priority ? (
-            <div className="text-red-500 text-sm">{formik.errors.priority}</div>
-          ) : null}
-        </div>
-        {/* Category Select */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Category</label>
-          <select
-            name="category_id"
-            value={formik.values.category_id}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className="mt-1 p-2 w-full border border-gray-300 rounded"
-            required
-          >
-            <option value="">Select a category</option>
-            {categories?.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-          {formik.touched.category_id && formik.errors.category_id ? (
-            <div className="text-red-500 text-sm">{formik.errors.category_id}</div>
-          ) : null}
-        </div>
-        {/* Team Select */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Team</label>
-          <select
-            name="team_id"
-            value={formik.values.team_id}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className="mt-1 p-2 w-full border border-gray-300 rounded"
-            required
-          >
-            <option value="">Select a team</option>
-            {teams?.map((team) => (
-              <option key={team.id} value={team.id}>
-                {team.name}
-              </option>
-            ))}
-          </select>
-          {formik.touched.team_id && formik.errors.team_id ? (
-            <div className="text-red-500 text-sm">{formik.errors.team_id}</div>
-          ) : null}
-        </div>
-        {/* User/Member Select */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Member</label>
-          <select
-            name="user_id"
-            value={formik.values.user_id}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className="mt-1 p-2 w-full border border-gray-300 rounded"
-            required
-            disabled={!formik.values.team_id} // Disable if no team selected
-          >
-            <option value="">Select a member</option>
-            {members?.map((member) => (
-              <option key={member.id} value={member.id}>
-                {member.name}
-              </option>
-            ))}
-          </select>
-          {formik.touched.user_id && formik.errors.user_id ? (
-            <div className="text-red-500 text-sm">{formik.errors.user_id}</div>
-          ) : null}
-        </div>
-        {/* Submit Button */}
-        <div>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-          >
-            Update Task
-          </button>
-        </div>
-      </form>
-      <ToastContainer />
-    </div>
+
+    <><Helmet>
+      <meta charSet="utf-8" />
+      <title>Edit Task</title>
+    </Helmet><div className="container mx-auto p-4">
+        <h2 className="text-2xl font-bold mb-4">Edit Task</h2>
+        <form onSubmit={formik.handleSubmit} className="space-y-4">
+          {/* Title Input */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Title</label>
+            <input
+              type="text"
+              name="title"
+              value={formik.values.title}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className="mt-1 p-2 w-full border border-gray-300 rounded"
+              required />
+            {formik.touched.title && formik.errors.title ? (
+              <div className="text-red-500 text-sm">{formik.errors.title}</div>
+            ) : null}
+          </div>
+          {/* Description Input */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Description</label>
+            <textarea
+              name="description"
+              value={formik.values.description}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className="mt-1 p-2 w-full border border-gray-300 rounded"
+              required />
+            {formik.touched.description && formik.errors.description ? (
+              <div className="text-red-500 text-sm">{formik.errors.description}</div>
+            ) : null}
+          </div>
+          {/* Start Date Input */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Start Date</label>
+            <input
+              type="date"
+              name="start_date"
+              value={formik.values.start_date}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className="mt-1 p-2 w-full border border-gray-300 rounded"
+              required />
+            {formik.touched.start_date && formik.errors.start_date ? (
+              <div className="text-red-500 text-sm">{formik.errors.start_date}</div>
+            ) : null}
+          </div>
+          {/* End Date Input */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">End Date</label>
+            <input
+              type="date"
+              name="end_date"
+              value={formik.values.end_date}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className="mt-1 p-2 w-full border border-gray-300 rounded"
+              required />
+            {formik.touched.end_date && formik.errors.end_date ? (
+              <div className="text-red-500 text-sm">{formik.errors.end_date}</div>
+            ) : null}
+          </div>
+          {/* Status Select */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Status</label>
+            <select
+              name="status"
+              value={formik.values.status}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className="mt-1 p-2 w-full border border-gray-300 rounded"
+              required
+            >
+              <option value="not started">Not Started</option>
+              <option value="in progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+            {formik.touched.status && formik.errors.status ? (
+              <div className="text-red-500 text-sm">{formik.errors.status}</div>
+            ) : null}
+          </div>
+          {/* Priority Select */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Priority</label>
+            <select
+              name="priority"
+              value={formik.values.priority}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className="mt-1 p-2 w-full border border-gray-300 rounded"
+              required
+            >
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+            {formik.touched.priority && formik.errors.priority ? (
+              <div className="text-red-500 text-sm">{formik.errors.priority}</div>
+            ) : null}
+          </div>
+          {/* Category Select */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Category</label>
+            <select
+              name="category_id"
+              value={formik.values.category_id}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className="mt-1 p-2 w-full border border-gray-300 rounded"
+              required
+            >
+              <option value="">Select a category</option>
+              {categories?.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+            {formik.touched.category_id && formik.errors.category_id ? (
+              <div className="text-red-500 text-sm">{formik.errors.category_id}</div>
+            ) : null}
+          </div>
+          {/* Team Select */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Team</label>
+            <select
+              name="team_id"
+              value={formik.values.team_id}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className="mt-1 p-2 w-full border border-gray-300 rounded"
+              required
+            >
+              <option value="">Select a team</option>
+              {teams?.map((team) => (
+                <option key={team.id} value={team.id}>
+                  {team.name}
+                </option>
+              ))}
+            </select>
+            {formik.touched.team_id && formik.errors.team_id ? (
+              <div className="text-red-500 text-sm">{formik.errors.team_id}</div>
+            ) : null}
+          </div>
+          {/* User/Member Select */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Member</label>
+            <select
+              name="user_id"
+              value={formik.values.user_id}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className="mt-1 p-2 w-full border border-gray-300 rounded"
+              required
+              disabled={!formik.values.team_id} // Disable if no team selected
+            >
+              <option value="">Select a member</option>
+              {members?.map((member) => (
+                <option key={member.id} value={member.id}>
+                  {member.name}
+                </option>
+              ))}
+            </select>
+            {formik.touched.user_id && formik.errors.user_id ? (
+              <div className="text-red-500 text-sm">{formik.errors.user_id}</div>
+            ) : null}
+          </div>
+          {/* Submit Button */}
+          <div>
+            <button
+              type="submit"
+              className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+            >
+              Update Task
+            </button>
+          </div>
+        </form>
+        <ToastContainer />
+      </div></>
   );
 };
 

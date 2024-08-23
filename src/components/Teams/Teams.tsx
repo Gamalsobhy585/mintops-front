@@ -7,6 +7,7 @@ import RemoveMemberPopup from '../RemoveMemberPopup/RemoveMemberPopup';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -91,6 +92,7 @@ const Teams: React.FC = () => {
 
   if (isError) {
     return (
+    
       <div className="flex justify-center items-center h-screen">
         <p className="text-red-500">Failed to load teams. Please try again later.</p>
       </div>
@@ -98,44 +100,48 @@ const Teams: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto mt-10">
+
+    <><Helmet>
+      <meta charSet="utf-8" />
+      <title>Teams</title>
+    </Helmet><div className="container mx-auto mt-10">
         <div className="flex justify-end mb-4">
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={() => navigate('/teams/create')}
-        >
-          Create a Team
-        </button>
-      </div>
-      <table className="min-w-full bg-white">
-        <thead className="bg-blue-500 text-white">
-          <tr>
-            <th className="w-1/4 py-2 text-left pl-4">Team Name</th>
-            <th className="w-1/2 py-2 text-center">Team Members</th> 
-            <th className="w-1/4 py-2 text-center">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.data.map((team: any) => (
-            <tr key={team.id} className="even:bg-gray-100 odd:bg-white text-left">
-              <td className="w-1/4 py-2 pl-4 font-semibold">{team.name}</td>
-              <td className="w-1/2 py-2 text-center">
-                {team.members && team.members.length > 0 ? (
-                  <>
-                    <span className="font-semibold pl-4">{team.members[0]?.name}</span>
-                    <ul className="pl-4 mt-2">
-                      {team.members.slice(1).map((member: any) => (
-                        <li key={member.id} className="italic font-semibold">
-                          {member.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                ) : (
-                  <p className="italic">No members found</p>
-                )}
-              </td>
-              <div className="flex flex-col items-center">
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+            onClick={() => navigate('/teams/create')}
+          >
+            Create a Team
+          </button>
+        </div>
+        <table className="min-w-full bg-white">
+          <thead className="bg-blue-500 text-white">
+            <tr>
+              <th className="w-1/4 py-2 text-left pl-4">Team Name</th>
+              <th className="w-1/2 py-2 text-center">Team Members</th>
+              <th className="w-1/4 py-2 text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data?.data.map((team: any) => (
+              <tr key={team.id} className="even:bg-gray-100 odd:bg-white text-left">
+                <td className="w-1/4 py-2 pl-4 font-semibold">{team.name}</td>
+                <td className="w-1/2 py-2 text-center">
+                  {team.members && team.members.length > 0 ? (
+                    <>
+                      <span className="font-semibold pl-4">{team.members[0]?.name}</span>
+                      <ul className="pl-4 mt-2">
+                        {team.members.slice(1).map((member: any) => (
+                          <li key={member.id} className="italic font-semibold">
+                            {member.name}
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  ) : (
+                    <p className="italic">No members found</p>
+                  )}
+                </td>
+                <div className="flex flex-col items-center">
                   <button
                     className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 w-[10rem] px-3 rounded m-1 min-w-[120px]"
                     onClick={() => handleAddMemberClick(team.id)}
@@ -152,30 +158,28 @@ const Teams: React.FC = () => {
                     Delete Team
                   </button>
                 </div>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {isFetching && (
-        <div className="flex justify-center items-center mt-4">
-          <p className="text-blue-500">Updating teams...</p>
-        </div>
-      )}
-      {isAddPopupOpen && selectedTeamId !== null && (
-        <UserSelectPopup
-          teamId={selectedTeamId}
-          onClose={handleClosePopup}
-          onAddMember={handleAddMember}
-        />
-      )}
-      {isRemovePopupOpen && selectedTeamId !== null && (
-        <RemoveMemberPopup
-          teamId={selectedTeamId}
-          onClose={handleClosePopup}
-          onRemoveMember={handleAddMember}
-        />
-      )}
-    </div>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {isFetching && (
+          <div className="flex justify-center items-center mt-4">
+            <p className="text-blue-500">Updating teams...</p>
+          </div>
+        )}
+        {isAddPopupOpen && selectedTeamId !== null && (
+          <UserSelectPopup
+            teamId={selectedTeamId}
+            onClose={handleClosePopup}
+            onAddMember={handleAddMember} />
+        )}
+        {isRemovePopupOpen && selectedTeamId !== null && (
+          <RemoveMemberPopup
+            teamId={selectedTeamId}
+            onClose={handleClosePopup}
+            onRemoveMember={handleAddMember} />
+        )}
+      </div></>
   );
 };
 

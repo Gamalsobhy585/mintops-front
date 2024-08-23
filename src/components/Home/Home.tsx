@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 
 interface Task {
   id: number;
@@ -160,137 +161,138 @@ const Home: React.FC = () => {
   }
 
   return (
+    <><Helmet>
+      <meta charSet="utf-8" />
+      <title>Home</title>
+    </Helmet>
     <div className="container mx-auto p-4">
-      <div className="flex justify-end mb-4 space-x-2">
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={() => navigate('/tasks/create')}
-        >
-          Create Task
-        </button>
-        <button
-          className="bg-gray-500 text-white px-4 py-2 rounded flex items-center"
-          onClick={() => navigate('/trash')}
-        >
-          <FontAwesomeIcon icon={faTrash} className="mr-2" />
-          Trash
-        </button>
-      </div>
-      
-      <div className="grid grid-cols-3 gap-4 mb-4">
-        <input
-          type="text"
-          name="title"
-          placeholder="Filter by Title"
-          value={filters.title}
-          onChange={handleFilterChange}
-          className="border border-blue-500 p-2"
-        />
-        <input
-          type="text"
-          name="description"
-          placeholder="Filter by Description"
-          value={filters.description}
-          onChange={handleFilterChange}
-          className="border border-blue-500 p-2"
-        />
-        <input
-          type="date"
-          name="start_date"
-          placeholder="Filter by Start Date"
-          value={filters.start_date}
-          onChange={handleFilterChange}
-          className="border border-blue-500 p-2"
-        />
-        <input
-          type="date"
-          name="end_date"
-          placeholder="Filter by End Date"
-          value={filters.end_date}
-          onChange={handleFilterChange}
-          className="border border-blue-500 p-2"
-        />
-       <select
-  className="p-2 border rounded"
-  value={filters.status}
-  onChange={(e) => setFilters({ ...filters, status: e.target.value })}
->
-  <option value="">All Statuses</option>
-  <option value="not started">Not Started</option>
-  <option value="in progress">In Progress</option>
-  <option value="completed">Completed</option>
-</select>
+        <div className="flex justify-end mb-4 space-x-2">
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+            onClick={() => navigate('/tasks/create')}
+          >
+            Create Task
+          </button>
+          <button
+            className="bg-gray-500 text-white px-4 py-2 rounded flex items-center"
+            onClick={() => navigate('/trash')}
+          >
+            <FontAwesomeIcon icon={faTrash} className="mr-2" />
+            Trash
+          </button>
+        </div>
 
-        <select
-          name="priority"
-          value={filters.priority}
-          onChange={handleFilterChange}
-          className="border border-blue-500 p-2"
-        >
-          <option value="">Filter by Priority</option>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-        <select
-  className="p-2 border rounded"
-  value={filters.category_id}
-  onChange={(e) => setFilters({ ...filters, category_id: parseInt(e.target.value) || '' })}
->
-  <option value="">All Categories</option>
-  {categories.map((category) => (
-    <option key={category.id} value={category.id}>
-      {category.name}
-    </option>
-  ))}
-</select>
+        <div className="grid grid-cols-3 gap-4 mb-4">
+          <input
+            type="text"
+            name="title"
+            placeholder="Filter by Title"
+            value={filters.title}
+            onChange={handleFilterChange}
+            className="border border-blue-500 p-2" />
+          <input
+            type="text"
+            name="description"
+            placeholder="Filter by Description"
+            value={filters.description}
+            onChange={handleFilterChange}
+            className="border border-blue-500 p-2" />
+          <input
+            type="date"
+            name="start_date"
+            placeholder="Filter by Start Date"
+            value={filters.start_date}
+            onChange={handleFilterChange}
+            className="border border-blue-500 p-2" />
+          <input
+            type="date"
+            name="end_date"
+            placeholder="Filter by End Date"
+            value={filters.end_date}
+            onChange={handleFilterChange}
+            className="border border-blue-500 p-2" />
+          <select
+            className="p-2 border rounded"
+            value={filters.status}
+            onChange={(e) => setFilters({ ...filters, status: e.target.value })}
+          >
+            <option value="">All Statuses</option>
+            <option value="not started">Not Started</option>
+            <option value="in progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+
+          <select
+            name="priority"
+            value={filters.priority}
+            onChange={handleFilterChange}
+            className="border border-blue-500 p-2"
+          >
+            <option value="">Filter by Priority</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+          <select
+            className="p-2 border rounded"
+            value={filters.category_id}
+            onChange={(e) => setFilters({ ...filters, category_id: parseInt(e.target.value) || '' })}
+          >
+            <option value="">All Categories</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
 
 
 
-      </div>
+        </div>
 
-      <table className="min-w-full bg-white border border-blue-500">
-        <thead>
-          <tr className="bg-sky-100">
-            <th className="text-black p-2 border border-blue-500">Title</th>
-            <th className="text-black p-2 border border-blue-500">Description</th>
-            <th className="text-black p-2 border border-blue-500">Start Date</th>
-            <th className="text-black p-2 border border-blue-500">End Date</th>
-            <th className="text-black p-2 border border-blue-500">Status</th>
-            <th className="text-black p-2 border border-blue-500">Priority</th>
-            <th className="text-black p-2 border border-blue-500">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData?.map((task) => (
-            <tr key={task.id}>
-              <td className="border border-blue-500 p-2">{task.title}</td>
-              <td className="border border-blue-500 p-2">{task.description}</td>
-              <td className="border border-blue-500 p-2">{task.start_date}</td>
-              <td className="border border-blue-500 p-2">{task.end_date}</td>
-              <td className="border border-blue-500 p-2">{task.status}</td>
-              <td className="border border-blue-500 p-2">{task.priority}</td>
-              <td className="border border-blue-500 p-2">
-                <button
-                  className="text-blue-500 hover:underline mr-2"
-                  onClick={() => navigate(`/tasks/edit/${task.id}`)}
-                >
-                  Edit
-                </button>
-                <button
-                  className="text-red-500 hover:underline"
-                  onClick={() => handleDelete(task.id)}
-                >
-                  Delete
-                </button>
-              </td>
+        <table className="min-w-full bg-white border border-blue-500">
+          <thead>
+            <tr className="bg-sky-100">
+              <th className="text-black p-2 border border-blue-500">Title</th>
+              <th className="text-black p-2 border border-blue-500">Description</th>
+              <th className="text-black p-2 border border-blue-500">Start Date</th>
+              <th className="text-black p-2 border border-blue-500">End Date</th>
+              <th className="text-black p-2 border border-blue-500">Status</th>
+              <th className="text-black p-2 border border-blue-500">Priority</th>
+              <th className="text-black p-2 border border-blue-500">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <ToastContainer />
-    </div>
-  );
+          </thead>
+          <tbody>
+            {filteredData?.map((task) => (
+              <tr key={task.id}>
+                <td className="border border-blue-500 p-2">{task.title}</td>
+                <td className="border border-blue-500 p-2">{task.description}</td>
+                <td className="border border-blue-500 p-2">{task.start_date}</td>
+                <td className="border border-blue-500 p-2">{task.end_date}</td>
+                <td className="border border-blue-500 p-2">{task.status}</td>
+                <td className="border border-blue-500 p-2">{task.priority}</td>
+                <td className="border border-blue-500 p-2">
+                  <button
+                    className="text-blue-500 hover:underline mr-2"
+                    onClick={() => navigate(`/tasks/edit/${task.id}`)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="text-red-500 hover:underline"
+                    onClick={() => handleDelete(task.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <ToastContainer />
+      </div></>
+  
+);
 };
 
 export default Home;
