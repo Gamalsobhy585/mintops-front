@@ -140,7 +140,7 @@ function App() {
         { path: 'register', element: <PublicRoute userData={userData}><Register /></PublicRoute> },
         { path: 'login', element: <PublicRoute userData={userData}><Login saveUserData={saveUserData} /></PublicRoute> }, 
         { path: 'tasks/create', element: <ProtectedRoute userData={userData}><CreateTask /></ProtectedRoute> },
-        { path: 'tasks/:id/edit', element: <ProtectedRoute userData={userData}><EditTask /></ProtectedRoute> },
+        { path: 'tasks/edit/:id', element: <ProtectedRoute userData={userData}><EditTask /></ProtectedRoute> },
         { path: 'categories', element: <ProtectedRoute userData={userData}><Categories /></ProtectedRoute> },
         { path: 'teams/create', element: <ProtectedRoute userData={userData}><CreateTeam /></ProtectedRoute> },
         { path: 'teams', element: <ProtectedRoute userData={userData}><Teams /></ProtectedRoute> },

@@ -6,9 +6,12 @@ import UserSelectPopup from '../UserSelectPopup/UserSelectPopup';
 import RemoveMemberPopup from '../RemoveMemberPopup/RemoveMemberPopup';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const fetchTeams = async () => {
+  
   const token = localStorage.getItem('userToken');
   const response = await axios.get('http://localhost:8000/api/v1/teams/', {
     headers: {
@@ -20,6 +23,7 @@ const fetchTeams = async () => {
 };
 
 const Teams: React.FC = () => {
+  const navigate = useNavigate();
   const { data, isError, isLoading, isFetching, refetch } = useQuery({
     queryKey: ['getTeams'],
     queryFn: fetchTeams,
@@ -95,6 +99,14 @@ const Teams: React.FC = () => {
 
   return (
     <div className="container mx-auto mt-10">
+        <div className="flex justify-end mb-4">
+        <button
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+          onClick={() => navigate('/teams/create')}
+        >
+          Create a Team
+        </button>
+      </div>
       <table className="min-w-full bg-white">
         <thead className="bg-blue-500 text-white">
           <tr>

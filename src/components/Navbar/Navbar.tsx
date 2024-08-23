@@ -24,7 +24,7 @@ export default function Navbar({ userData, logOut }: NavbarProps) {
         {userData?.token ? (  
           <ul className="list-none flex m-0 items-center space-x-4">
             <li>
-              <Link className="text-sky-500 hover:text-sky-700" to="/tasks">
+              <Link className="text-sky-500 hover:text-sky-700" to="/">
                 Tasks
               </Link>
             </li>
@@ -33,16 +33,8 @@ export default function Navbar({ userData, logOut }: NavbarProps) {
                 Categories
               </Link>
             </li>
-            <li>
-              <Link className="text-sky-500 hover:text-sky-700" to="/create-task">
-                Create a New Task
-              </Link>
-            </li>
-            <li>
-              <Link className="text-sky-500 hover:text-sky-700" to="/teams/create">
-                Create a New Team
-              </Link>
-            </li>
+    
+        
             <li>
               <Link className="text-sky-500 hover:text-sky-700" to="/teams">
                 My Teams
