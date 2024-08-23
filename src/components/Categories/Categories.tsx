@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import SyncLoader from 'react-spinners/SyncLoader';
 import { Helmet } from 'react-helmet';
-
 
 const fetchCategories = async (url: string) => {
   const token = localStorage.getItem('userToken');
@@ -16,7 +15,8 @@ const fetchCategories = async (url: string) => {
 };
 
 const Categories: React.FC = () => {
-  const [currentUrl, setCurrentUrl] = React.useState('http://localhost:8000/api/v1/categories');
+  const [currentUrl, setCurrentUrl] = useState('http://localhost:8000/api/v1/categories');
+  const [searchTerm, setSearchTerm] = useState('');
   const queryClient = useQueryClient();
 
   const { data, isError, isLoading } = useQuery({
@@ -42,7 +42,7 @@ const Categories: React.FC = () => {
           },
         }
       );
-  
+
       queryClient.invalidateQueries({ queryKey: ['recentlyVisitedCategories'] });
     } catch (error) {
       console.error('Error fetching category:', error);
@@ -52,6 +52,10 @@ const Categories: React.FC = () => {
   const handlePageChange = (url: string) => {
     setCurrentUrl(url);
   };
+
+  const filteredCategories = data?.data.filter((category: any) =>
+    category.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   if (isLoading) {
     return (
@@ -72,6 +76,17 @@ const Categories: React.FC = () => {
         <title>Categories</title>
       </Helmet>
       <div className="p-4">
+        {/* Search Input */}
+        <div className="mb-4">
+          <input
+            type="text"
+            className="w-full p-2 border border-slate-600 rounded"
+            placeholder="Search categories..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
         {/* Recently Visited Categories Section */}
         {recentCategories?.data.length > 0 && (
           <div className="mb-8">
@@ -91,8 +106,10 @@ const Categories: React.FC = () => {
         )}
 
         {/* Existing Categories Grid */}
+        <h2 className="text-lg font-bold mb-2">Our  Categories</h2>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
-          {data?.data.map((category: any) => (
+          {filteredCategories?.map((category: any) => (
             <div
               key={category.id}
               className="bg-slate-600 hover:bg-slate-300 border text-blue-200 hover:text-blue-600 border-blue-600 p-4 rounded-lg text-center cursor-pointer"
