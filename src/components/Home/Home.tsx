@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import CreateTask from '../CreateTask/CreateTask';
 
 interface Task {
   id: number;
@@ -45,8 +46,9 @@ const Home: React.FC = () => {
   const { data, isError, isLoading, refetch } = useQuery({
     queryKey: ['getTasks'],
     queryFn: fetchTasks,
-    refetchInterval: 5 * 60 * 1000, 
-    staleTime: 5 * 60 * 1000,
+    refetchInterval: 10 * 1000, 
+    staleTime: 10 * 1000,
+    refetchOnWindowFocus: true,
   });
   const fetchAllCategories = async () => {
     let allCategories: { id: number; name: string }[] = [];
@@ -161,10 +163,12 @@ const Home: React.FC = () => {
   }
 
   return (
+    
     <><Helmet>
       <meta charSet="utf-8" />
       <title>Home</title>
     </Helmet>
+    
     <div className="container mx-auto p-4">
         <div className="flex justify-end mb-4 space-x-2">
           <button

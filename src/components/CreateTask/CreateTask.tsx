@@ -5,6 +5,11 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import SyncLoader from 'react-spinners/SyncLoader';
 import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
+interface CreateTaskProps {
+  onTaskCreated: () => void;
+}
+
 
 interface Category {
   id: number;
@@ -36,6 +41,7 @@ const fetchTeams = async (): Promise<Team[]> => {
 };
 
 const CreateTask: React.FC = () => {
+  const navigate = useNavigate();
   const [members, setMembers] = useState<Member[]>([]);
 
   const { data: categories, isLoading: categoriesLoading } = useQuery<Category[]>({
@@ -76,6 +82,7 @@ const CreateTask: React.FC = () => {
         await axios.post('http://localhost:8000/api/v1/tasks', values, {
           headers: { Authorization: `Bearer ${localStorage.getItem('userToken')}` },
         });
+        navigate('/');
       } catch (error) {
       }
     },
@@ -99,7 +106,7 @@ const CreateTask: React.FC = () => {
       formik.setFieldValue('user_id', '');
     }
   }, [formik.values.team_id]);
-
+  
   if (categoriesLoading || teamsLoading) {
     return (
       <div className="flex justify-center items-center h-screen">

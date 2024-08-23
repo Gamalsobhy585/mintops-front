@@ -107,7 +107,7 @@ const EditTask: React.FC = () => {
           progress: undefined,
           theme: 'colored',
         });
-        navigate('/tasks');
+        navigate('/');
       } catch (error) {
         toast.error('Failed to update task.', {
           position: 'bottom-right',
