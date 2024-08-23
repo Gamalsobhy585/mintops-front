@@ -5,6 +5,8 @@ import { SyncLoader } from 'react-spinners';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 interface Task {
   id: number;
@@ -89,14 +91,21 @@ const Home: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="flex justify-end mb-4">
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={() => navigate('/tasks/create')}
-        >
-          Create Task
-        </button>
-      </div>
+          <div className="flex justify-end mb-4 space-x-2">
+      <button
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+        onClick={() => navigate('/tasks/create')}
+      >
+        Create Task
+      </button>
+      <button
+        className="bg-gray-500 text-white px-4 py-2 rounded flex items-center"
+        onClick={() => navigate('/trash')}
+      >
+        <FontAwesomeIcon icon={faTrash} className="mr-2" />
+        Trash
+      </button>
+    </div>
       <table className="min-w-full bg-white border border-blue-500">
         <thead>
           <tr className="bg-sky-100">
@@ -142,3 +151,4 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+

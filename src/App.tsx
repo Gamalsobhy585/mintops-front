@@ -24,6 +24,7 @@ import TeamDetails from './components/TeamDetails/TeamDetails';
 import CreateTask from './components/CreateTask/CreateTask';
 import Categories from './components/Categories/Categories';
 import EditTask from './components/EditTask/EditTask';
+import DeletedTasks from './components/DeletedCategories/DeletedCategories';
 
 const queryClient = new QueryClient();
 
@@ -40,7 +41,7 @@ function App() {
       saveUserData({ token });
     }
     showCookieConsent();
-    getLocation(); // Fetch and store user location
+    getLocation(); 
   }, []);
 
   function saveUserData({ token }: UserData) {
@@ -145,6 +146,7 @@ function App() {
         { path: 'teams/create', element: <ProtectedRoute userData={userData}><CreateTeam /></ProtectedRoute> },
         { path: 'teams', element: <ProtectedRoute userData={userData}><Teams /></ProtectedRoute> },
         { path: 'teams/:id', element: <ProtectedRoute userData={userData}><TeamDetails /></ProtectedRoute> },
+        { path: 'trash', element: <ProtectedRoute userData={userData}><DeletedTasks/></ProtectedRoute> },
       ]
     },
     { path: '*', element: <NotFound /> }
