@@ -15,18 +15,22 @@ interface RemoveMemberPopupProps {
 const RemoveMemberPopup: React.FC<RemoveMemberPopupProps> = ({ teamId, onClose, onRemoveMember }) => {
   const [members, setMembers] = useState<User[]>([]);
   const [selectedMember, setSelectedMember] = useState<User | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchMembers = async () => {
-      const token = localStorage.getItem('userToken');
-      const response = await axios.get(`http://localhost:8000/api/v1/teams/${teamId}/members`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      // Correctly access the members data from the response
-      setMembers(response.data.data); 
+      try {
+        const token = localStorage.getItem('userToken');
+        const response = await axios.get(`http://localhost:8000/api/v1/teams/${teamId}/members`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setMembers(response.data.data);
+      } catch (err) {
+        console.error('Error fetching members:', err);
+        setError('Failed to fetch members');
+      }
     };
 
     fetchMembers();
@@ -34,17 +38,22 @@ const RemoveMemberPopup: React.FC<RemoveMemberPopupProps> = ({ teamId, onClose, 
 
   const handleRemoveMember = async () => {
     if (selectedMember) {
-      const token = localStorage.getItem('userToken');
-      await axios.delete(
-        `http://localhost:8000/api/v1/teams/${teamId}/members/${selectedMember.id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      onRemoveMember();
-      onClose();
+      try {
+        const token = localStorage.getItem('userToken');
+        await axios.delete(
+          `http://localhost:8000/api/v1/teams/${teamId}/members/${selectedMember.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        onRemoveMember();
+        onClose();
+      } catch (err) {
+        console.error('Error removing member:', err);
+        setError('Failed to remove member');
+      }
     }
   };
 
@@ -52,6 +61,7 @@ const RemoveMemberPopup: React.FC<RemoveMemberPopupProps> = ({ teamId, onClose, 
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
       <div className="bg-white w-11/12 md:w-7/12 p-6 rounded shadow-lg">
         <h2 className="text-xl font-semibold mb-4">Select a Member to Remove</h2>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
         <ul>
           {members.map(member => (
             <li

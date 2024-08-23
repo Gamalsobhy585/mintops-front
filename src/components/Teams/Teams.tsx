@@ -28,8 +28,8 @@ const Teams: React.FC = () => {
   const { data, isError, isLoading, isFetching, refetch } = useQuery({
     queryKey: ['getTeams'],
     queryFn: fetchTeams,
-    refetchInterval: 5* 60 * 1000, 
-    staleTime : 5* 60 * 1000
+    refetchInterval: 5* 1000, 
+    staleTime : 5* 1000
   });
 
   const [isAddPopupOpen, setIsAddPopupOpen] = useState(false);
@@ -148,9 +148,13 @@ const Teams: React.FC = () => {
                   >
                     Add Member
                   </button>
-                  <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded m-1 w-[10rem] min-w-[120px]">
-                    Remove Member
-                  </button>
+                  <button
+  className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded m-1 w-[10rem] min-w-[120px]"
+  onClick={() => handleRemoveMemberClick(team.id)}
+>
+  Remove Member
+</button>
+
                   <button
                     className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded m-1 w-[10rem] min-w-[120px]"
                     onClick={() => handleDeleteTeam(team.id)}
