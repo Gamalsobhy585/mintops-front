@@ -52,8 +52,8 @@ const Home: React.FC = () => {
   const { data, isError, isLoading, refetch, error } = useQuery({
     queryKey: ['getTasks'],
     queryFn: fetchTasks,
-    refetchInterval: 10 * 1000,
-    staleTime: 10 * 1000,
+    refetchInterval: 5 * 1000,
+    staleTime: 5 * 1000,
     refetchOnWindowFocus: true,
   });
 
@@ -202,113 +202,128 @@ const Home: React.FC = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 mb-4">
-          <input
-            type="text"
-            name="title"
-            placeholder="Filter by Title"
-            value={filters.title}
-            onChange={handleFilterChange}
-            className="border border-blue-500 p-2" />
-          <input
-            type="text"
-            name="description"
-            placeholder="Filter by Description"
-            value={filters.description}
-            onChange={handleFilterChange}
-            className="border border-blue-500 p-2" />
-          <input
-            type="date"
-            name="start_date"
-            placeholder="Filter by Start Date"
-            value={filters.start_date}
-            onChange={handleFilterChange}
-            className="border border-blue-500 p-2" />
-          <input
-            type="date"
-            name="end_date"
-            placeholder="Filter by End Date"
-            value={filters.end_date}
-            onChange={handleFilterChange}
-            className="border border-blue-500 p-2" />
-          <select
-            className="p-2 border rounded"
-            value={filters.status}
-            onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-          >
-            <option value="">All Statuses</option>
-            <option value="not started">Not Started</option>
-            <option value="in progress">In Progress</option>
-            <option value="completed">Completed</option>
-          </select>
+        <div className="grid md:grid-cols-3 sm:grid-cols-12 gap-4 mb-4">
+            {/* Title Filter - Visible on All Screens */}
+  <input
+    type="text"
+    name="title"
+    placeholder="Filter by Title"
+    value={filters.title}
+    onChange={handleFilterChange}
+    className="border border-blue-500  p-2"
+  />
 
-          <select
-            name="priority"
-            value={filters.priority}
-            onChange={handleFilterChange}
-            className="border border-blue-500 p-2"
-          >
-            <option value="">Filter by Priority</option>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </select>
-          <select
-            className="p-2 border rounded"
-            value={filters.category_id}
-            onChange={(e) => setFilters({ ...filters, category_id: parseInt(e.target.value) || '' })}
-          >
-            <option value="">All Categories</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
+  {/* End Date Filter - Visible on All Screens */}
+  <input
+    type="date"
+    name="end_date"
+    placeholder="Filter by End Date"
+    value={filters.end_date}
+    onChange={handleFilterChange}
+    className="border border-blue-500 p-2"
+  />
 
+  {/* Description Filter - Hidden on Mobile */}
+  <input
+    type="text"
+    name="description"
+    placeholder="Filter by Description"
+    value={filters.description}
+    onChange={handleFilterChange}
+    className="border border-blue-500 p-2 hidden sm:block"
+  />
 
+  {/* Start Date Filter - Hidden on Mobile */}
+  <input
+    type="date"
+    name="start_date"
+    placeholder="Filter by Start Date"
+    value={filters.start_date}
+    onChange={handleFilterChange}
+    className="border border-blue-500 p-2 hidden sm:block"
+  />
 
-        </div>
+  {/* Status Filter - Hidden on Mobile */}
+  <select
+    className="p-2 border rounded hidden sm:block"
+    value={filters.status}
+    onChange={(e) => setFilters({ ...filters, status: e.target.value })}
+  >
+    <option value="">All Statuses</option>
+    <option value="not started">Not Started</option>
+    <option value="in progress">In Progress</option>
+    <option value="completed">Completed</option>
+  </select>
+
+  {/* Priority Filter - Hidden on Mobile */}
+  <select
+    name="priority"
+    value={filters.priority}
+    onChange={handleFilterChange}
+    className="border border-blue-500 p-2 hidden sm:block"
+  >
+    <option value="">Filter by Priority</option>
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+  </select>
+
+  {/* Category Filter - Hidden on Mobile */}
+  <select
+    className="p-2 border rounded hidden sm:block"
+    value={filters.category_id}
+    onChange={(e) => setFilters({ ...filters, category_id: parseInt(e.target.value) || '' })}
+  >
+    <option value="">All Categories</option>
+    {categories.map((category) => (
+      <option key={category.id} value={category.id}>
+        {category.name}
+      </option>
+    ))}
+  </select>
+</div>
+
 
         <table className="min-w-full bg-white border border-blue-500">
-          <thead>
-            <tr className="bg-sky-100">
-              <th className="text-black p-2 border border-blue-500">Title</th>
-              <th className="text-black p-2 border border-blue-500">Description</th>
-              <th className="text-black p-2 border border-blue-500">Start Date</th>
-              <th className="text-black p-2 border border-blue-500">End Date</th>
-              <th className="text-black p-2 border border-blue-500">Status</th>
-              <th className="text-black p-2 border border-blue-500">Priority</th>
-              <th className="text-black p-2 border border-blue-500">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData?.map((task) => (
-              <tr key={task.id}>
-                <td className="border border-blue-500 p-2">{task.title}</td>
-                <td className="border border-blue-500 p-2">{task.description}</td>
-                <td className="border border-blue-500 p-2">{task.start_date}</td>
-                <td className="border border-blue-500 p-2">{task.end_date}</td>
-                <td className="border border-blue-500 p-2">{task.status}</td>
-                <td className="border border-blue-500 p-2">{task.priority}</td>
-                <td className="border border-blue-500 p-2">
-                  <button
-                    className="text-blue-500 hover:underline mr-2"
-                    onClick={() => navigate(`/tasks/edit/${task.id}`)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="text-red-500 hover:underline"
-                    onClick={() => handleDelete(task.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+  <thead>
+    <tr className="bg-sky-100">
+      <th className="text-black p-2 border border-blue-500">Title</th>
+      <th className="text-black p-2 border border-blue-500 hidden sm:table-cell">Description</th>
+      <th className="text-black p-2 border border-blue-500 hidden sm:table-cell">Start Date</th>
+      <th className="text-black p-2 border border-blue-500">End Date</th>
+      <th className="text-black p-2 border border-blue-500 hidden sm:table-cell">Status</th>
+      <th className="text-black p-2 border border-blue-500 hidden sm:table-cell">Priority</th>
+      <th className="text-black p-2 border border-blue-500">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {filteredData?.map((task) => (
+      <tr key={task.id}>
+        <td className="border border-blue-500 p-2">{task.title}</td>
+        <td className="border border-blue-500 p-2 hidden sm:table-cell">{task.description}</td>
+        <td className="border border-blue-500 p-2 hidden sm:table-cell">{task.start_date}</td>
+        <td className="border border-blue-500 p-2">{task.end_date}</td>
+        <td className="border border-blue-500 p-2 hidden sm:table-cell">{task.status}</td>
+        <td className="border border-blue-500 p-2 hidden sm:table-cell">{task.priority}</td>
+        <td className="border border-blue-500 p-2">
+          <button
+            className="text-blue-500 hover:underline mr-2"
+            onClick={() => navigate(`/tasks/edit/${task.id}`)}
+          >
+            Edit
+          </button>
+          <button
+            className="text-red-500 hover:underline"
+            onClick={() => handleDelete(task.id)}
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
         <ToastContainer />
       </div></>
   

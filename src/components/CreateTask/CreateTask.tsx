@@ -129,7 +129,7 @@ const CreateTask: React.FC = () => {
               type="text"
               id="title"
               name="title"
-              className="mt-1 block w-full border-black border rounded-md shadow-sm"
+              className="mt-1 block w-full border-black border p-1 rounded-md shadow-sm"
               value={formik.values.title}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur} />
@@ -145,7 +145,7 @@ const CreateTask: React.FC = () => {
               id="description"
               name="description"
               rows={4}
-              className="mt-1 block w-full border-black border rounded-md shadow-sm"
+              className="mt-1 block w-full border-black border p-1 rounded-md shadow-sm"
               value={formik.values.description}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur} />
