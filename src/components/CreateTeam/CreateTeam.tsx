@@ -60,6 +60,7 @@ const CreateTeam: React.FC = () => {
         <input
                     aria-label='Team Name'
                     aria-required='true'
+                    
 
           type="text"
           value={teamName}

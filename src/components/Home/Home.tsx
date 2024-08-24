@@ -187,13 +187,13 @@ const Home: React.FC = () => {
     
     <div className="container mx-auto p-4">
         <div className="flex justify-end mb-4 space-x-2">
-          <button 
+          <button role='link'
             className="bg-blue-500 text-white px-4 py-2 rounded"
             onClick={() => navigate('/tasks/create')}
           >
             Create Task
           </button>
-          <button
+          <button role='link'
             className="bg-gray-500 text-white px-4 py-2 rounded flex items-center"
             onClick={() => navigate('/trash')}
           >
@@ -212,10 +212,13 @@ const Home: React.FC = () => {
     onChange={handleFilterChange}
     className="border border-blue-500  p-2"
     aria-label='search by title '
+    tabIndex={1}
   />
 
   {/* End Date Filter - Visible on All Screens */}
   <input
+      tabIndex={2}
+
     type="date"
     name="end_date"
     placeholder="Filter by End Date"
@@ -227,6 +230,8 @@ const Home: React.FC = () => {
 
   {/* Description Filter - Hidden on Mobile */}
   <input
+      tabIndex={3}
+
     type="text"
     name="description"
     placeholder="Filter by Description"
@@ -239,6 +244,8 @@ const Home: React.FC = () => {
 
   {/* Start Date Filter - Hidden on Mobile */}
   <input
+      tabIndex={4}
+
     type="date"
     name="start_date"
     placeholder="Filter by Start Date"
@@ -251,6 +258,8 @@ const Home: React.FC = () => {
 
   {/* Status Filter - Hidden on Mobile */}
   <select
+      tabIndex={5}
+
     className="p-2 border rounded hidden sm:block"
     value={filters.status}
     onChange={(e) => setFilters({ ...filters, status: e.target.value })}
@@ -263,6 +272,8 @@ const Home: React.FC = () => {
 
   {/* Priority Filter - Hidden on Mobile */}
   <select
+      tabIndex={6}
+
     name="priority"
     value={filters.priority}
     onChange={handleFilterChange}
@@ -276,6 +287,8 @@ const Home: React.FC = () => {
 
   {/* Category Filter - Hidden on Mobile */}
   <select
+      tabIndex={7}
+
     className="p-2 border rounded hidden sm:block"
     value={filters.category_id}
     onChange={(e) => setFilters({ ...filters, category_id: parseInt(e.target.value) || '' })}
@@ -290,7 +303,7 @@ const Home: React.FC = () => {
 </div>
 
 
-        <table className="min-w-full bg-white border border-blue-500">
+        <table tabIndex={0} className="min-w-full bg-white border border-blue-500">
   <thead>
     <tr className="bg-sky-100">
       <th scope='col' className="text-black p-2 border border-blue-500">Title</th>
@@ -313,12 +326,14 @@ const Home: React.FC = () => {
         <td className="border border-blue-500 p-2 hidden sm:table-cell">{task.priority}</td>
         <td className="border border-blue-500 p-2">
           <button
+          role='link' aria-label='link to edit the task'
             className="text-blue-500 hover:underline mr-2"
             onClick={() => navigate(`/tasks/edit/${task.id}`)}
           >
             Edit
           </button>
           <button
+
             className="text-red-500 hover:underline"
             onClick={() => handleDelete(task.id)}
             role='button'

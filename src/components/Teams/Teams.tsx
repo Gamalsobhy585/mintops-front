@@ -145,12 +145,14 @@ const Teams: React.FC = () => {
                   <button role='button'
                     className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 w-[10rem] px-3 rounded m-1 min-w-[120px]"
                     onClick={() => handleAddMemberClick(team.id)}
+                    aria-label={`Add a member to team ${team.name}`}
                   >
                     Add Member
                   </button>
                   <button role='button'
   className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded m-1 w-[10rem] min-w-[120px]"
   onClick={() => handleRemoveMemberClick(team.id)}
+  aria-label={`Remove a member from team ${team.name}`}
 >
   Remove Member
 </button>
@@ -158,6 +160,7 @@ const Teams: React.FC = () => {
                   <button
                     className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded m-1 w-[10rem] min-w-[120px]"
                     onClick={() => handleDeleteTeam(team.id)} role='button'
+                    aria-label={`Delete team ${team.name}`}
                   >
                     Delete Team
                   </button>
