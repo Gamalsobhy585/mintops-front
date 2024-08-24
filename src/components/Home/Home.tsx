@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { SyncLoader } from 'react-spinners';
@@ -7,9 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import CreateTask from '../CreateTask/CreateTask';
 
 interface Task {
   id: number;
@@ -28,10 +26,18 @@ interface Task {
 }
 
 const fetchTasks = async () => {
-  const { data } = await axios.get<Task[]>('http://localhost:8000/api/v1/tasks', {
-    headers: { Authorization: `Bearer ${localStorage.getItem('userToken')}` },
-  });
-  return data;
+  try {
+    const { data } = await axios.get<Task[]>('http://localhost:8000/api/v1/tasks', {
+      headers: { Authorization: `Bearer ${localStorage.getItem('userToken')}` },
+    });
+    return data;
+  } catch (error: any) {
+    if (error.response && error.response.status === 500) {
+      const errorMessage = error.response.data.message;
+      throw new Error(errorMessage || 'An error occurred while fetching tasks.');
+    }
+    throw error;
+  }
 };
 
 const deleteTask = async (id: number) => {
@@ -43,18 +49,19 @@ const deleteTask = async (id: number) => {
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState<{ id: number; name: string }[]>([]);
-  const { data, isError, isLoading, refetch } = useQuery({
+  const { data, isError, isLoading, refetch, error } = useQuery({
     queryKey: ['getTasks'],
     queryFn: fetchTasks,
-    refetchInterval: 10 * 1000, 
+    refetchInterval: 10 * 1000,
     staleTime: 10 * 1000,
     refetchOnWindowFocus: true,
   });
+
   const fetchAllCategories = async () => {
     let allCategories: { id: number; name: string }[] = [];
     let page = 1;
     let lastPage = 1;
-  
+
     do {
       const { data } = await axios.get(`http://localhost:8000/api/v1/categories?page=${page}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('userToken')}` },
@@ -63,10 +70,10 @@ const Home: React.FC = () => {
       lastPage = data.meta.last_page;
       page++;
     } while (page <= lastPage);
-  
+
     return allCategories;
   };
-  
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -76,10 +83,10 @@ const Home: React.FC = () => {
         console.error('Failed to fetch categories:', error);
       }
     };
-  
+
     fetchCategories();
   }, []);
-  
+
   const [filters, setFilters] = useState<{
     title: string;
     description: string;
@@ -95,10 +102,8 @@ const Home: React.FC = () => {
     end_date: '',
     status: '',
     priority: '',
-    category_id: '', 
+    category_id: '',
   });
-  
-  
 
   const handleDelete = async (id: number) => {
     try {
@@ -114,7 +119,7 @@ const Home: React.FC = () => {
         theme: 'colored',
         style: { backgroundColor: '#f56565', color: '#fff' },
       });
-      refetch(); 
+      refetch();
     } catch (error) {
       toast.error('Failed to delete the task.', {
         position: 'bottom-right',
@@ -148,7 +153,6 @@ const Home: React.FC = () => {
       (filters.category_id === '' || task.category_id === filters.category_id)
     );
   });
-  
 
   if (isLoading) {
     return (
@@ -158,8 +162,20 @@ const Home: React.FC = () => {
     );
   }
 
-  if (isError) {
-    return <div>Error fetching tasks.</div>;
+  if (isError && error instanceof Error) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-center">
+          <p className="text-red-600 font-semibold text-lg">You have To join team at first </p>
+          <button
+            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
+            onClick={() => navigate('/teams/create')}
+          >
+            Create or Join a Team
+          </button>
+        </div>
+      </div>
+    );
   }
 
   return (
