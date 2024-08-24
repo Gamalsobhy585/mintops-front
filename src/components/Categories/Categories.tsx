@@ -84,6 +84,8 @@ const Categories: React.FC = () => {
             placeholder="Search categories..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            aria-label='search by Category  '
+
           />
         </div>
 

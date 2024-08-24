@@ -13,6 +13,7 @@ export default function Navbar({ userData, logOut }: NavbarProps) {
         <h1 className="m-0 pr-3 text-xl font-semibold">
           <Link className="text-decoration-none" to="/">
             <img
+            aria-hidden='true'
               className="mintops-logo h-10 mr-2.5"
               src="/logo.png"
               alt="Mint-ops Logo"
@@ -43,7 +44,7 @@ export default function Navbar({ userData, logOut }: NavbarProps) {
             <li>
               <span
                 className="text-sky-500 hover:text-sky-700 cursor-pointer"
-                onClick={logOut}
+                onClick={logOut} role='button'
               >
                 Logout
               </span>

@@ -96,11 +96,13 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
         <form onSubmit={formik.handleSubmit} className="max-w-md mx-auto">
           <div className="relative z-0 w-full mb-5 group">
             <input
+            aria-required='true'
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.name}
               name="name"
               type="text"
+              aria-label='name'
               id="floating_name"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-sky-600 peer"
               placeholder=" "
@@ -121,6 +123,9 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
 
           <div className="relative z-0 w-full mb-5 group">
             <input
+                        aria-required='true'
+
+            aria-label='email'
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
@@ -146,6 +151,9 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
 
           <div className="relative z-0 w-full mb-5 group">
             <input
+                        aria-required='true'
+
+            aria-label='password'
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.password}
@@ -157,7 +165,7 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
               required
             />
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
-              <i className={`fa ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+              <i aria-label='button to show password' className={`fa ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
             </div>
             <label
               htmlFor="password"
@@ -174,6 +182,9 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
 
           <div className="relative z-0 w-full mb-5 group">
             <input
+                        aria-required='true'
+
+            aria-label='confirm password'
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.password_confirmation}
@@ -185,7 +196,7 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
               required
             />
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onClick={() => setShowPasswordConfirmation(!showPasswordConfirmation)}>
-              <i className={`fa ${showPasswordConfirmation ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+              <i aria-label='button to show password' className={`fa ${showPasswordConfirmation ? 'fa-eye' : 'fa-eye-slash'}`}></i>
             </div>
             <label
               htmlFor="password_confirmation"
@@ -216,9 +227,9 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
                 Select Role
               </label>
             </div>
-            <p>{formik.errors.role && formik.touched.role && <div className='p-1 mb-4 bg-sky-200 rounded-lg text-sky-600 text-sm'>{formik.errors.role}</div>}</p>
+            <p>{formik.errors.role && formik.touched.role && <div role='alert' className='p-1 mb-4 bg-sky-200 rounded-lg text-sky-600 text-sm'>{formik.errors.role}</div>}</p>
 
-            <button disabled={!formik.isValid || !formik.dirty || isLoading} type="submit" className="disabled:bg-slate-400 w-full text-white hover:bg-sky-300 bg-sky-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center"> {isLoading ? <i className="fa-solid fa-spinner fa-spin"></i> : "Register"} </button>
+            <button role='button' disabled={!formik.isValid || !formik.dirty || isLoading} type="submit" className="disabled:bg-slate-400 w-full text-white hover:bg-sky-300 bg-sky-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center"> {isLoading ? <i className="fa-solid fa-spinner fa-spin"></i> : "Register"} </button>
           </form>
         </div>
       </div>

@@ -126,6 +126,9 @@ const CreateTask: React.FC = () => {
           <div className="mb-4">
             <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
             <input
+                          aria-required='true'
+
+            aria-label='title of task'
               type="text"
               id="title"
               name="title"
@@ -158,6 +161,9 @@ const CreateTask: React.FC = () => {
           <div className="mb-4">
             <label htmlFor="start_date" className="block text-sm font-medium text-gray-700">Start Date</label>
             <input
+                          aria-required='true'
+
+            aria-label='start date for the task '
               type="date"
               id="start_date"
               name="start_date"
@@ -174,6 +180,10 @@ const CreateTask: React.FC = () => {
           <div className="mb-4">
             <label htmlFor="end_date" className="block text-sm font-medium text-gray-700">End Date</label>
             <input
+                          aria-required='true'
+
+                        aria-label='end date for the task '
+
               type="date"
               id="end_date"
               name="end_date"
@@ -190,6 +200,7 @@ const CreateTask: React.FC = () => {
           <div className="mb-4">
             <label htmlFor="status" className="block text-sm  font-medium text-gray-700">Status</label>
             <select
+            aria-required="true"
               id="status"
               name="status"
               className="mt-1 block w-full border-black border rounded-md shadow-sm"
@@ -210,6 +221,7 @@ const CreateTask: React.FC = () => {
           <div className="mb-4">
             <label htmlFor="priority" className="block text-sm font-medium text-gray-700">Priority</label>
             <select
+            aria-required="true"
               id="priority"
               name="priority"
               className="mt-1 block w-full border-black border rounded-md shadow-sm"
@@ -230,6 +242,7 @@ const CreateTask: React.FC = () => {
           <div className="mb-4">
             <label htmlFor="category_id" className="block text-sm font-medium text-gray-700">Category</label>
             <select
+            aria-required="true"
               id="category_id"
               name="category_id"
               className="mt-1 block w-full border-black border rounded-md shadow-sm"
@@ -253,6 +266,7 @@ const CreateTask: React.FC = () => {
           <div className="mb-4">
             <label htmlFor="team_id" className="block text-sm font-medium text-gray-700">Team</label>
             <select
+            aria-required="true"
               id="team_id"
               name="team_id"
               className="mt-1 block w-full border-black border rounded-md shadow-sm"
@@ -276,6 +290,7 @@ const CreateTask: React.FC = () => {
           <div className="mb-4">
             <label htmlFor="user_id" className="block text-sm font-medium text-gray-700">User (optional)</label>
             <select
+            aria-required="true"
               id="user_id"
               name="user_id"
               className="mt-1 block w-full border-black border rounded-md shadow-sm"
@@ -295,7 +310,7 @@ const CreateTask: React.FC = () => {
             ) : null}
           </div>
 
-          <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">Create Task</button>
+          <button role='button' type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">Create Task</button>
         </form>
       </div></>
   );

@@ -197,6 +197,10 @@ const EditTask: React.FC = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700">Title</label>
             <input
+                          aria-required='true'
+
+                        aria-label='Title of the  task '
+
               type="text"
               name="title"
               value={formik.values.title}
@@ -212,6 +216,9 @@ const EditTask: React.FC = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700">Description</label>
             <textarea
+                        aria-label='description for the task '
+                        aria-required='true'
+
               name="description"
               value={formik.values.description}
               onChange={formik.handleChange}
@@ -226,6 +233,9 @@ const EditTask: React.FC = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700">Start Date</label>
             <input
+                        aria-label='start date for the task '
+                        aria-required='true'
+
               type="date"
               name="start_date"
               value={formik.values.start_date}
@@ -241,6 +251,9 @@ const EditTask: React.FC = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700">End Date</label>
             <input
+                        aria-label='end date for the task '
+                        aria-required='true'
+
               type="date"
               name="end_date"
               value={formik.values.end_date}
@@ -256,6 +269,7 @@ const EditTask: React.FC = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700">Status</label>
             <select
+            aria-required="true"
               name="status"
               value={formik.values.status}
               onChange={formik.handleChange}
@@ -275,6 +289,7 @@ const EditTask: React.FC = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700">Priority</label>
             <select
+            aria-required="true"
               name="priority"
               value={formik.values.priority}
               onChange={formik.handleChange}
@@ -294,6 +309,7 @@ const EditTask: React.FC = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700">Category</label>
             <select
+            aria-required="true"
               name="category_id"
               value={formik.values.category_id}
               onChange={formik.handleChange}
@@ -316,6 +332,7 @@ const EditTask: React.FC = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700">Team</label>
             <select
+            aria-required="true"
               name="team_id"
               value={formik.values.team_id}
               onChange={formik.handleChange}
@@ -338,13 +355,14 @@ const EditTask: React.FC = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700">Member</label>
             <select
+            aria-required="true"
               name="user_id"
               value={formik.values.user_id}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               className="mt-1 p-2 w-full border border-gray-300 rounded"
               required
-              disabled={!formik.values.team_id} // Disable if no team selected
+              disabled={!formik.values.team_id} 
             >
               <option value="">Select a member</option>
               {members?.map((member) => (
@@ -360,6 +378,7 @@ const EditTask: React.FC = () => {
           {/* Submit Button */}
           <div>
             <button
+            role='button'
               type="submit"
               className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
             >

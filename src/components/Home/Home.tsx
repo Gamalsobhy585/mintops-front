@@ -187,7 +187,7 @@ const Home: React.FC = () => {
     
     <div className="container mx-auto p-4">
         <div className="flex justify-end mb-4 space-x-2">
-          <button
+          <button 
             className="bg-blue-500 text-white px-4 py-2 rounded"
             onClick={() => navigate('/tasks/create')}
           >
@@ -211,6 +211,7 @@ const Home: React.FC = () => {
     value={filters.title}
     onChange={handleFilterChange}
     className="border border-blue-500  p-2"
+    aria-label='search by title '
   />
 
   {/* End Date Filter - Visible on All Screens */}
@@ -221,6 +222,7 @@ const Home: React.FC = () => {
     value={filters.end_date}
     onChange={handleFilterChange}
     className="border border-blue-500 p-2"
+    aria-label='search by End Date '
   />
 
   {/* Description Filter - Hidden on Mobile */}
@@ -231,6 +233,8 @@ const Home: React.FC = () => {
     value={filters.description}
     onChange={handleFilterChange}
     className="border border-blue-500 p-2 hidden sm:block"
+    aria-label='search by Description '
+
   />
 
   {/* Start Date Filter - Hidden on Mobile */}
@@ -241,6 +245,8 @@ const Home: React.FC = () => {
     value={filters.start_date}
     onChange={handleFilterChange}
     className="border border-blue-500 p-2 hidden sm:block"
+    aria-label='search by Start Date '
+
   />
 
   {/* Status Filter - Hidden on Mobile */}
@@ -287,13 +293,13 @@ const Home: React.FC = () => {
         <table className="min-w-full bg-white border border-blue-500">
   <thead>
     <tr className="bg-sky-100">
-      <th className="text-black p-2 border border-blue-500">Title</th>
-      <th className="text-black p-2 border border-blue-500 hidden sm:table-cell">Description</th>
-      <th className="text-black p-2 border border-blue-500 hidden sm:table-cell">Start Date</th>
-      <th className="text-black p-2 border border-blue-500">End Date</th>
-      <th className="text-black p-2 border border-blue-500 hidden sm:table-cell">Status</th>
-      <th className="text-black p-2 border border-blue-500 hidden sm:table-cell">Priority</th>
-      <th className="text-black p-2 border border-blue-500">Actions</th>
+      <th scope='col' className="text-black p-2 border border-blue-500">Title</th>
+      <th scope='col' className="text-black p-2 border border-blue-500 hidden sm:table-cell">Description</th>
+      <th scope='col' className="text-black p-2 border border-blue-500 hidden sm:table-cell">Start Date</th>
+      <th scope='col' className="text-black p-2 border border-blue-500">End Date</th>
+      <th scope='col' className="text-black p-2 border border-blue-500 hidden sm:table-cell">Status</th>
+      <th scope='col' className="text-black p-2 border border-blue-500 hidden sm:table-cell">Priority</th>
+      <th scope='col' className="text-black p-2 border border-blue-500">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -315,6 +321,7 @@ const Home: React.FC = () => {
           <button
             className="text-red-500 hover:underline"
             onClick={() => handleDelete(task.id)}
+            role='button'
           >
             Delete
           </button>

@@ -71,25 +71,25 @@ const DeletedTasks: React.FC = () => {
   <thead>
     <tr className="bg-sky-300">
       {/* Title - Always Visible */}
-      <th className="text-black p-2 border border-blue-500">Title</th>
+      <th scope='col' className="text-black p-2 border border-blue-500">Title</th>
 
       {/* Description - Hidden on Mobile */}
-      <th className="text-black p-2 border border-blue-500 hidden sm:table-cell">Description</th>
+      <th scope='col' className="text-black p-2 border border-blue-500 hidden sm:table-cell">Description</th>
 
       {/* Start Date - Hidden on Mobile */}
-      <th className="text-black p-2 border border-blue-500 hidden sm:table-cell">Start Date</th>
+      <th scope='col' className="text-black p-2 border border-blue-500 hidden sm:table-cell">Start Date</th>
 
       {/* End Date - Always Visible */}
-      <th className="text-black p-2 border border-blue-500">End Date</th>
+      <th scope='col' className="text-black p-2 border border-blue-500">End Date</th>
 
       {/* Status - Hidden on Mobile */}
-      <th className="text-black p-2 border border-blue-500 hidden sm:table-cell">Status</th>
+      <th scope='col' className="text-black p-2 border border-blue-500 hidden sm:table-cell">Status</th>
 
       {/* Priority - Hidden on Mobile */}
-      <th className="text-black p-2 border border-blue-500 hidden sm:table-cell">Priority</th>
+      <th scope='col' className="text-black p-2 border border-blue-500 hidden sm:table-cell">Priority</th>
 
       {/* Actions - Always Visible */}
-      <th className="text-black p-2 border border-blue-500">Actions</th>
+      <th scope='col' className="text-black p-2 border border-blue-500">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -117,7 +117,7 @@ const DeletedTasks: React.FC = () => {
         <td className="border border-blue-500 p-2">
           <button
             className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600"
-            onClick={() => mutation.mutate(task.id)}
+            onClick={() => mutation.mutate(task.id)} role='button'
           >
             Restore
           </button>

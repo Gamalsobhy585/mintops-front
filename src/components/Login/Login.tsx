@@ -95,6 +95,8 @@ export default function Login({ saveUserData }: LoginProps) {
           <form onSubmit={formik.handleSubmit} className="max-w-md mx-auto">
             <div className="relative z-0 w-full mb-5 group">
               <input
+              aria-required='true'
+              aria-label='email'
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
@@ -120,6 +122,9 @@ export default function Login({ saveUserData }: LoginProps) {
 
             <div className="relative z-0 w-full mb-5 group">
               <input
+                            aria-required='true'
+
+              aria-label='password'
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.password}
@@ -131,7 +136,7 @@ export default function Login({ saveUserData }: LoginProps) {
                 required
               />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
-                <i className={`fa ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+                <i aria-label='button to show password' className={`fa ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
               </div>
               <label
                 htmlFor="password"
@@ -147,7 +152,7 @@ export default function Login({ saveUserData }: LoginProps) {
             )}
 
             <div className='flex flex-row justify-center'>
-            <button
+            <button role='button'
   disabled={!formik.isValid || !formik.dirty || isLoading}
   type="submit"
   className="disabled:bg-slate-400 w-full text-white hover:bg-sky-300 bg-sky-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center"

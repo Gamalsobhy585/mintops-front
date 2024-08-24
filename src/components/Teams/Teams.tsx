@@ -106,7 +106,7 @@ const Teams: React.FC = () => {
       <title>Teams</title>
     </Helmet><div className="container mx-auto mt-10">
         <div className="flex justify-end mb-4">
-          <button
+          <button role='button' 
             className="bg-blue-500 text-white px-4 py-2 rounded"
             onClick={() => navigate('/teams/create')}
           >
@@ -116,9 +116,9 @@ const Teams: React.FC = () => {
         <table className="min-w-full bg-white">
           <thead className="bg-blue-500 text-white">
             <tr>
-              <th className="w-1/4 py-2 text-left pl-4">Team Name</th>
-              <th className="w-1/2 py-2 text-center">Team Members</th>
-              <th className="w-1/4 py-2 text-center">Actions</th>
+              <th scope='col' className="w-1/4 py-2 text-left pl-4">Team Name</th>
+              <th scope='col' className="w-1/2 py-2 text-center">Team Members</th>
+              <th scope='col' className="w-1/4 py-2 text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -142,13 +142,13 @@ const Teams: React.FC = () => {
                   )}
                 </td>
                 <div className="flex flex-col items-center">
-                  <button
+                  <button role='button'
                     className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 w-[10rem] px-3 rounded m-1 min-w-[120px]"
                     onClick={() => handleAddMemberClick(team.id)}
                   >
                     Add Member
                   </button>
-                  <button
+                  <button role='button'
   className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded m-1 w-[10rem] min-w-[120px]"
   onClick={() => handleRemoveMemberClick(team.id)}
 >
@@ -157,7 +157,7 @@ const Teams: React.FC = () => {
 
                   <button
                     className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded m-1 w-[10rem] min-w-[120px]"
-                    onClick={() => handleDeleteTeam(team.id)}
+                    onClick={() => handleDeleteTeam(team.id)} role='button'
                   >
                     Delete Team
                   </button>

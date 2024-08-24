@@ -58,11 +58,15 @@ const CreateTeam: React.FC = () => {
     </Helmet><div className="flex flex-col items-center mt-10">
         <label className="mb-2 text-lg font-medium">Team Name:</label>
         <input
+                    aria-label='Team Name'
+                    aria-required='true'
+
           type="text"
           value={teamName}
           onChange={(e) => setTeamName(e.target.value)}
           className="border border-gray-300 rounded p-2 w-full max-w-sm" />
         <button
+        role='button'
           onClick={handleCreateTeam}
           className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
         >
