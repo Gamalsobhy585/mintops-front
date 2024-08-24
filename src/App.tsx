@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
@@ -9,6 +9,8 @@ import Cookies from 'js-cookie';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 import { Offline } from 'react-detect-offline';
+import UserContextProvider, { UserContext } from './Context/UserContext';
+
 import SyncLoader from 'react-spinners/SyncLoader';
 
 import Register from './components/Register/Register';
@@ -153,17 +155,19 @@ function App() {
   ]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <div className="App">
-        <ToastContainer />
-      </div>
-      <Offline>
-        <div className="fixed bottom-0 left-0 w-full p-5 bg-sky-500 text-white text-center text-lg font-bold shadow-lg z-50 animate-slideDown">
-          You are offline
+    <UserContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <div className="App">
+          <ToastContainer />
         </div>
-      </Offline>
-      <RouterProvider router={routers} />
-    </QueryClientProvider>
+        <Offline>
+          <div className="fixed bottom-0 left-0 w-full p-5 bg-sky-500 text-white text-center text-lg font-bold shadow-lg z-50 animate-slideDown">
+            You are offline
+          </div>
+        </Offline>
+        <RouterProvider router={routers} />
+      </QueryClientProvider>
+    </UserContextProvider>
   );
 }
 

@@ -5,7 +5,8 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import Cookies from 'js-cookie';
-
+import { useContext } from 'react';
+import { UserContext } from '../../Context/UserContext';
 interface UserData {
   username: string;
   token: string;
@@ -16,6 +17,11 @@ interface LoginProps {
 }
 
 export default function Login({ saveUserData }: LoginProps) {
+  const userContext = useContext(UserContext);
+  if (!userContext) {
+    throw new Error("UserContext must be used within a UserContextProvider");
+  }
+  const { setToken } = userContext;
   const [apiError, setApiError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -37,7 +43,8 @@ export default function Login({ saveUserData }: LoginProps) {
     
         const token = response.data.access_token;
         const username = response.data.username || 'User';
-    
+        setToken(token);
+
         saveUserData({ username, token });
     
         localStorage.setItem('userToken', token);
