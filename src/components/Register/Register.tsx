@@ -239,7 +239,7 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
             </div>
             <p>{formik.errors.role && formik.touched.role && <div role='alert' className='p-1 mb-4 bg-sky-200 dark:bg-sky-700 rounded-lg text-sky-600 dark:text-sky-200 text-sm'>{formik.errors.role}</div>}</p>
 
-            <button role='button' disabled={!formik.isValid || !formik.dirty || isLoading} type="submit" className="disabled:bg-slate-200 w-full dark:disabled:bg-slate-800 dark:text-white text-black hover:bg-sky-300 dark:hover:bg-sky-900 bg-sky-600 dark:bg-sky-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center"> {isLoading ? <i className="fa-solid fa-spinner fa-spin"></i> : "Register"} </button>
+            <button role='button' disabled={!formik.isValid || !formik.dirty || isLoading} type="submit" className="disabled:bg-slate-200 w-full dark:disabled:bg-slate-800 dark:text-white text-black hover:bg-sky-300 dark:hover:bg-sky-900 bg-sky-600 dark:bg-sky-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center"> {isLoading ? <i className="fa-solid fa-spinner fa-spin"></i> : "Register"} </button>
           </form>
         </div>
       </div>
