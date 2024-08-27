@@ -126,21 +126,28 @@ const Teams: React.FC = () => {
               <tr key={team.id} className="even:bg-gray-300 dark:even:bg-indigo-950 dark:odd:bg-indigo-900 dark:text-white odd:bg-white text-left">
                 <td className="w-1/4 py-2 pl-4 font-semibold">{team.name}</td>
                 <td className="w-1/2 py-2 text-center">
-                  {team.members && team.members.length > 0 ? (
-                    <>
-                      <span className="font-semibold pl-4">{team.members[0]?.name}</span>
-                      <ul className="pl-4 mt-2">
-                        {team.members.slice(1).map((member: any) => (
-                          <li key={member.id} className="italic font-semibold">
-                            {member.name}
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  ) : (
-                    <p className="italic">No members found</p>
-                  )}
-                </td>
+  {team.members && team.members.length > 0 ? (
+    <ul
+      className={`pl-2 mt-2 ${
+        team.members.length > 1 ? "overflow-y-auto" : ""
+      }`}
+      style={{
+        maxHeight: team.members.length > 4 ? "6rem" : "auto", 
+        paddingRight: '5px', 
+      }}
+    >
+      {team.members.map((member: any, index: number) => (
+        <li key={member.id} className="italic font-semibold">
+          {member.name}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p className="italic">No members found</p>
+  )}
+</td>
+
+
                 <div className="flex flex-col items-center">
                   <button role='button'
                     className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 w-[10rem] px-3 rounded m-1 min-w-[120px]"
