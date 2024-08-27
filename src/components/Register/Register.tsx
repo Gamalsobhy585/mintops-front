@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useContext} from 'react';
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import { useFormik } from 'formik';
 import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
 import Cookies from 'js-cookie';
+import { RoleContext } from '../../Context/RoleContext';
 
 export default function Register() {
   const [apiError, setApiError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  // const { setRole } = useContext(RoleContext); 
+    const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
 
   let navigate = useNavigate();
@@ -24,6 +26,13 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
   localStorage.setItem("users", JSON.stringify(storedUsers));
 }
 
+// useEffect(() => {
+//   if (setRole) {
+//     setUserLocation();
+//   } else {
+//     console.error('setRole is undefined');
+//   }
+// }, [setRole]);
 
 
   const setUserLocation = () => {
@@ -63,6 +72,7 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
       const { data } = await axios.post(`http://localhost:8000/api/v1/register`, formValues);
       localStorage.setItem('userToken', data.token);
       Cookies.set('authorizationtoken', data.token);
+      // setRole(formValues.role);
       navigate('/');
     } catch (error: any) {
       setApiError(error.response?.data?.message || 'An error occurred');
@@ -104,7 +114,7 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
               type="text"
               aria-label='name'
               id="floating_name"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-sky-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-sky-600 peer"
               placeholder=" "
               required
             />
@@ -132,7 +142,7 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
               type="email"
               name="email"
               id="floating_email"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-sky-600 peer"
+              className="block py-2.5 px-0 w-full text-sm dark:text-gray-100 text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-sky-600 peer"
               placeholder=" "
               required
             />
@@ -160,7 +170,7 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
               type={showPassword ? 'text' : 'password'}
               name="password"
               id="password"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-sky-600 peer"
+              className="block py-2.5 px-0 w-full text-sm dark:text-gray-100 text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-sky-600 peer"
               placeholder=" "
               required
             />
@@ -191,7 +201,7 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
               type={showPasswordConfirmation ? 'text' : 'password'}
               name="password_confirmation"
               id="password_confirmation"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-sky-600 peer"
+              className="block py-2.5 px-0 w-full text-sm dark:text-gray-100 text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-sky-600 peer"
               placeholder=" "
               required
             />
