@@ -10,7 +10,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 import { Offline } from 'react-detect-offline';
 import UserContextProvider, { UserContext } from './Context/UserContext';
-
+// import { RoleContextProvider } from './Context/RoleContext';
 import SyncLoader from 'react-spinners/SyncLoader';
 
 import Register from './components/Register/Register';
@@ -162,6 +162,7 @@ function App({ darkMode, setDarkMode }: AppProps) {
 
   return (
     <UserContextProvider>
+      {/* <RoleContextProvider> */}
       <QueryClientProvider client={queryClient}>
         <div className="App">
           <ToastContainer />
@@ -173,7 +174,8 @@ function App({ darkMode, setDarkMode }: AppProps) {
         </Offline>
         <RouterProvider router={routers} />
       </QueryClientProvider>
-    </UserContextProvider>
+      {/* </RoleContextProvider> */}
+      </UserContextProvider>
   );
 }
 
