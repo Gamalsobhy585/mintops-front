@@ -8,16 +8,18 @@ interface UserData {
 }
 
 interface LayoutProps {
-  userData: UserData | null; 
-  setUserData: (data: UserData | null) => void;  
-  logOut: () => void;
+  darkMode: boolean;
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserData: React.Dispatch<React.SetStateAction<UserData | null>>;
+  userData: UserData | null;
+  logOut: () => Promise<void>;
 }
 
-export default function Layout({ userData, setUserData, logOut }: LayoutProps) {
+export default function Layout({ userData, setUserData, logOut , darkMode, setDarkMode }: LayoutProps) {
   return (
     <>
-      <Navbar logOut={logOut} userData={userData} />
-      <div className="container mx-auto py-5 px-4">
+      <Navbar logOut={logOut}  darkMode={darkMode} setDarkMode={setDarkMode} userData={userData} />
+      <div className="container  mx-auto py-5 px-4">
         <Outlet />
       </div>
     </>

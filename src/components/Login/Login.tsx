@@ -86,11 +86,11 @@ export default function Login({ saveUserData }: LoginProps) {
         <title>Login</title>
       </Helmet>
       
-      {apiError && <div className='p-1 mb-4 bg-sky-200 rounded-lg text-sky-600 text-sm'>{apiError}</div>}
+      {apiError && <div className='p-1 mb-4 bg-sky-200 dark:bg-sky-600 rounded-lg text-sky-600 dark:text-sky-200 text-sm'>{apiError}</div>}
 
-      <div className='border-2 max-w-md py-3 px-8 mx-auto rounded-md border-slate-300'>
+      <div className='border-2 max-w-md py-3 px-8 mx-auto rounded-md dark:bg-slate-950 border-slate-300'>
         <div className="max-w-xl my-10 mx-auto">
-          <h1 className='font-bold text-center text-sky-600 mb-10'>Login Now</h1>
+          <h1 className='font-bold text-center text-sky-600 dark:text-sky-200 mb-10'>Login Now</h1>
 
           <form onSubmit={formik.handleSubmit} className="max-w-md mx-auto">
             <div className="relative z-0 w-full mb-5 group">
@@ -103,19 +103,19 @@ export default function Login({ saveUserData }: LoginProps) {
                 type="email"
                 name="email"
                 id="email"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-sky-600 peer"
+                className="block py-2.5 px-0 w-full text-sm text-gray-900  dark:text-gray-100 bg-transparent border-0 border-b-2 dark:border-gray-800 border-gray-300 focus:outline-none focus:ring-0 focus:border-sky-600 dark:focus:border-sky-200 peer"
                 placeholder=" "
                 required
               />
               <label
                 htmlFor="email"
-                className="absolute text-sm text-gray-500 peer-focus:font-medium peer-focus:text-sky-600 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 origin-[0] scale-75 -translate-y-6 top-3 peer-focus:left-0"
+                className="absolute text-sm text-gray-500 dark:text-gray-100 peer-focus:font-medium peer-focus:text-sky-600 dark:peer-focus:text-sky-200  peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 origin-[0] scale-75 -translate-y-6 top-3 peer-focus:left-0"
               >
                 Email address
               </label>
             </div>
             {formik.errors.email && formik.touched.email && (
-              <div className='p-1 mb-4 bg-sky-200 rounded-lg text-sky-600 text-sm'>
+              <div className='p-1 mb-4 bg-sky-200 dark:bg-sky-600 rounded-lg text-sky-600 dark:text-sky-200 text-sm'>
                 {formik.errors.email}
               </div>
             )}
@@ -131,7 +131,7 @@ export default function Login({ saveUserData }: LoginProps) {
                 type={showPassword ? 'text' : 'password'}
                 name="password"
                 id="password"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-sky-600 peer"
+                className="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-200 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-sky-600 dark:focus:border-sky-200 peer"
                 placeholder=" "
                 required
               />
@@ -140,13 +140,13 @@ export default function Login({ saveUserData }: LoginProps) {
               </div>
               <label
                 htmlFor="password"
-                className="absolute text-sm text-gray-500 peer-focus:font-medium peer-focus:text-sky-600 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 origin-[0] scale-75 -translate-y-6 top-3 peer-focus:left-0"
+                className="absolute text-sm text-gray-500  dark:text-gray-100 peer-focus:font-medium peer-focus:text-sky-600  peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 origin-[0] scale-75 -translate-y-6 top-3 peer-focus:left-0"
               >
                 Password
               </label>
             </div>
             {formik.errors.password && formik.touched.password && (
-              <div className='p-1 mb-4 bg-sky-200 rounded-lg text-sky-600 text-sm'>
+              <div className='p-1 mb-4 bg-sky-200 dark:bg-sky-600 rounded-lg text-sky-600 dark:text-sky-200 text-sm'>
                 {formik.errors.password}
               </div>
             )}
@@ -155,7 +155,7 @@ export default function Login({ saveUserData }: LoginProps) {
             <button role='button'
   disabled={!formik.isValid || !formik.dirty || isLoading}
   type="submit"
-  className="disabled:bg-slate-400 w-full text-white hover:bg-sky-300 bg-sky-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+  className="disabled:bg-slate-400 dark:disabled:bg-slate-700 w-full text-white hover:bg-sky-300 dark:hover:bg-sky-800 bg-sky-600  dark:bg-sky-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
 >
   {isLoading ? <i className="fas fa-spinner fa-spin"></i> : "Login"}
 </button>

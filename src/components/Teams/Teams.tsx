@@ -114,7 +114,7 @@ const Teams: React.FC = () => {
           </button>
         </div>
         <table className="min-w-full bg-white">
-          <thead className="bg-blue-500 text-white">
+          <thead className="bg-blue-500 dark:bg-indigo-950 text-white">
             <tr>
               <th scope='col' className="w-1/4 py-2 text-left pl-4">Team Name</th>
               <th scope='col' className="w-1/2 py-2 text-center">Team Members</th>
@@ -123,7 +123,7 @@ const Teams: React.FC = () => {
           </thead>
           <tbody>
             {data?.data.map((team: any) => (
-              <tr key={team.id} className="even:bg-gray-100 odd:bg-white text-left">
+              <tr key={team.id} className="even:bg-gray-300 dark:even:bg-indigo-950 dark:odd:bg-indigo-900 dark:text-white odd:bg-white text-left">
                 <td className="w-1/4 py-2 pl-4 font-semibold">{team.name}</td>
                 <td className="w-1/2 py-2 text-center">
                   {team.members && team.members.length > 0 ? (

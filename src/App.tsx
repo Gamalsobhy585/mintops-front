@@ -33,9 +33,15 @@ const queryClient = new QueryClient();
 interface UserData {
   token: string | null;
 }
+interface AppProps {
+  darkMode: boolean;
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+}
+function App({ darkMode, setDarkMode }: AppProps) {
+    const [userData, setUserData] = useState<UserData | null>(null);
+  
+ 
 
-function App() {
-  const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem('userToken');
@@ -137,7 +143,7 @@ function App() {
   const routers = createBrowserRouter([
     {
       path: '/',
-      element: <Layout setUserData={setUserData} userData={userData} logOut={logOut} />,
+      element: <Layout  darkMode={darkMode} setDarkMode={setDarkMode} setUserData={setUserData} userData={userData} logOut={logOut} />,
       children: [
         { path: '/', element: <ProtectedRoute userData={userData}><Home /></ProtectedRoute> },
         { path: 'register', element: <PublicRoute userData={userData}><Register /></PublicRoute> },

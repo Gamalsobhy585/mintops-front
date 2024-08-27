@@ -56,7 +56,7 @@ const CreateTeam: React.FC = () => {
       <meta charSet="utf-8" />
       <title>Create New Team</title>
     </Helmet><div className="flex flex-col items-center mt-10">
-        <label className="mb-2 text-lg font-medium">Team Name:</label>
+        <label className="mb-2 text-lg dark:text-white font-medium">Team Name:</label>
         <input
                     aria-label='Team Name'
                     aria-required='true'

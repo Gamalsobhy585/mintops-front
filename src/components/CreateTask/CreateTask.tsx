@@ -120,11 +120,11 @@ const CreateTask: React.FC = () => {
     <><Helmet>
       <meta charSet="utf-8" />
       <title>Create New Task</title>
-    </Helmet><div className="border border-blue-200 p-4 rounded">
+    </Helmet><div className="border border-blue-200 dark:border-blue-800 p-4 rounded">
         <form onSubmit={formik.handleSubmit}>
           {/* Title */}
           <div className="mb-4">
-            <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
+            <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Title</label>
             <input
                           aria-required='true'
 
@@ -132,34 +132,34 @@ const CreateTask: React.FC = () => {
               type="text"
               id="title"
               name="title"
-              className="mt-1 block w-full border-black border p-1 rounded-md shadow-sm"
+              className="mt-1 block w-full border-black dark:border-white border p-1 rounded-md shadow-sm"
               value={formik.values.title}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur} />
             {formik.touched.title && formik.errors.title ? (
-              <div className="text-red-600 text-sm">{formik.errors.title}</div>
+              <div className="text-red-600 mt-1 dark:text-red-200 text-sm">{formik.errors.title}</div>
             ) : null}
           </div>
 
           {/* Description */}
           <div className="mb-4">
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Description</label>
             <textarea
               id="description"
               name="description"
               rows={4}
-              className="mt-1 block w-full border-black border p-1 rounded-md shadow-sm"
+              className="mt-1 block w-full border-black dark:border-white border p-1 rounded-md shadow-sm"
               value={formik.values.description}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur} />
             {formik.touched.description && formik.errors.description ? (
-              <div className="text-red-600 text-sm">{formik.errors.description}</div>
+              <div className="text-red-600   mt-1 dark:text-red-200 text-sm">{formik.errors.description}</div>
             ) : null}
           </div>
 
           {/* Start Date */}
           <div className="mb-4">
-            <label htmlFor="start_date" className="block text-sm font-medium text-gray-700">Start Date</label>
+            <label htmlFor="start_date" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Start Date</label>
             <input
                           aria-required='true'
 
@@ -167,18 +167,18 @@ const CreateTask: React.FC = () => {
               type="date"
               id="start_date"
               name="start_date"
-              className="mt-1 block w-full border-black border rounded-md shadow-sm"
+              className="mt-1 block w-full border-black dark:border-white border rounded-md shadow-sm"
               value={formik.values.start_date}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur} />
             {formik.touched.start_date && formik.errors.start_date ? (
-              <div className="text-red-600 text-sm">{formik.errors.start_date}</div>
+              <div className="text-red-600  mt-1 dark:text-red-200 text-sm">{formik.errors.start_date}</div>
             ) : null}
           </div>
 
           {/* End Date */}
           <div className="mb-4">
-            <label htmlFor="end_date" className="block text-sm font-medium text-gray-700">End Date</label>
+            <label htmlFor="end_date" className="block text-sm font-medium text-gray-700 dark:text-gray-200">End Date</label>
             <input
                           aria-required='true'
 
@@ -187,23 +187,23 @@ const CreateTask: React.FC = () => {
               type="date"
               id="end_date"
               name="end_date"
-              className="mt-1 block w-full border-black border rounded-md shadow-sm"
+              className="mt-1 block w-full border-black dark:border-white border rounded-md shadow-sm"
               value={formik.values.end_date}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur} />
             {formik.touched.end_date && formik.errors.end_date ? (
-              <div className="text-red-600 text-sm">{formik.errors.end_date}</div>
+              <div className="text-red-600  mt-1 dark:text-red-200 text-sm">{formik.errors.end_date}</div>
             ) : null}
           </div>
 
           {/* Status */}
           <div className="mb-4">
-            <label htmlFor="status" className="block text-sm  font-medium text-gray-700">Status</label>
+            <label htmlFor="status" className="block text-sm  font-medium text-gray-700 dark:text-gray-200">Status</label>
             <select
             aria-required="true"
               id="status"
               name="status"
-              className="mt-1 block w-full border-black border rounded-md shadow-sm"
+              className="mt-1 block w-full border-black dark:border-white border rounded-md shadow-sm"
               value={formik.values.status}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -213,18 +213,18 @@ const CreateTask: React.FC = () => {
               <option value="completed">Completed</option>
             </select>
             {formik.touched.status && formik.errors.status ? (
-              <div className="text-red-600 text-sm">{formik.errors.status}</div>
+              <div className="text-red-600  mt-1 dark:text-red-200 text-sm">{formik.errors.status}</div>
             ) : null}
           </div>
 
           {/* Priority */}
           <div className="mb-4">
-            <label htmlFor="priority" className="block text-sm font-medium text-gray-700">Priority</label>
+            <label htmlFor="priority" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Priority</label>
             <select
             aria-required="true"
               id="priority"
               name="priority"
-              className="mt-1 block w-full border-black border rounded-md shadow-sm"
+              className="mt-1 block w-full border-black dark:border-white border rounded-md shadow-sm"
               value={formik.values.priority}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -234,18 +234,18 @@ const CreateTask: React.FC = () => {
               <option value="high">High</option>
             </select>
             {formik.touched.priority && formik.errors.priority ? (
-              <div className="text-red-600 text-sm">{formik.errors.priority}</div>
+              <div className="text-red-600  mt-1 dark:text-red-200 text-sm">{formik.errors.priority}</div>
             ) : null}
           </div>
 
           {/* Category */}
           <div className="mb-4">
-            <label htmlFor="category_id" className="block text-sm font-medium text-gray-700">Category</label>
+            <label htmlFor="category_id" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Category</label>
             <select
             aria-required="true"
               id="category_id"
               name="category_id"
-              className="mt-1 block w-full border-black border rounded-md shadow-sm"
+              className="mt-1 block w-full border-black dark:border-white border rounded-md shadow-sm"
               value={formik.values.category_id}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -258,18 +258,18 @@ const CreateTask: React.FC = () => {
               ))}
             </select>
             {formik.touched.category_id && formik.errors.category_id ? (
-              <div className="text-red-600 text-sm">{formik.errors.category_id}</div>
+              <div className="text-red-600  mt-1 dark:text-red-200 text-sm">{formik.errors.category_id}</div>
             ) : null}
           </div>
 
           {/* Team */}
           <div className="mb-4">
-            <label htmlFor="team_id" className="block text-sm font-medium text-gray-700">Team</label>
+            <label htmlFor="team_id" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Team</label>
             <select
             aria-required="true"
               id="team_id"
               name="team_id"
-              className="mt-1 block w-full border-black border rounded-md shadow-sm"
+              className="mt-1 block w-full border-black dark:border-white border rounded-md shadow-sm"
               value={formik.values.team_id}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -282,18 +282,18 @@ const CreateTask: React.FC = () => {
               ))}
             </select>
             {formik.touched.team_id && formik.errors.team_id ? (
-              <div className="text-red-600 text-sm">{formik.errors.team_id}</div>
-            ) : null}
+              <div className="text-red-600  mt-1 dark:text-red-200 text-sm">{formik.errors.team_id}</div>
+            ) : null} 
           </div>
 
           {/* User */}
           <div className="mb-4">
-            <label htmlFor="user_id" className="block text-sm font-medium text-gray-700">User (optional)</label>
+            <label htmlFor="user_id" className="block text-sm font-medium text-gray-700 dark:text-gray-200">User (optional)</label>
             <select
             aria-required="true"
               id="user_id"
               name="user_id"
-              className="mt-1 block w-full border-black border rounded-md shadow-sm"
+              className="mt-1 block w-full border-black dark:border-white border rounded-md shadow-sm"
               value={formik.values.user_id}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -306,11 +306,11 @@ const CreateTask: React.FC = () => {
               ))}
             </select>
             {formik.touched.user_id && formik.errors.user_id ? (
-              <div className="text-red-600 text-sm">{formik.errors.user_id}</div>
+              <div className="text-red-600  mt-1 dark:text-red-200 text-sm">{formik.errors.user_id}</div>
             ) : null}
           </div>
 
-          <button role='button' type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">Create Task</button>
+          <button role='button' type="submit" className="bg-blue-800 dark:bg-blue-500 text-white py-2 px-4 rounded">Create Task</button>
         </form>
       </div></>
   );

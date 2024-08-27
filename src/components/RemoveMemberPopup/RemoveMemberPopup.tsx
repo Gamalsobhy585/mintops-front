@@ -59,14 +59,14 @@ const RemoveMemberPopup: React.FC<RemoveMemberPopupProps> = ({ teamId, onClose, 
 
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white w-11/12 md:w-7/12 p-6 rounded shadow-lg">
-        <h2 className="text-xl font-semibold mb-4">Select a Member to Remove</h2>
+      <div className="bg-white   relative dark:bg-gray-800 w-11/12 md:w-7/12 p-6 rounded shadow-lg">
+        <h2 className="text-xl dark:text-white font-semibold mb-4">Select a Member to Remove</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <ul>
           {members.map(member => (
             <li
               key={member.id}
-              className={`py-2 px-4 border-b hover:bg-gray-200 cursor-pointer ${selectedMember?.id === member.id ? 'bg-sky-300' : ''}`}
+              className={`py-2 px-4 dark:text-white border-b hover:bg-gray-200  dark:hover:bg-sky-600 cursor-pointer ${selectedMember?.id === member.id ? 'bg-sky-300' : ''}`}
               onClick={() => setSelectedMember(member)}
             >
               {member.name}
@@ -82,10 +82,10 @@ const RemoveMemberPopup: React.FC<RemoveMemberPopupProps> = ({ teamId, onClose, 
           </button>
         </div>
         <button
-          className="absolute top-2 right-2 text-2xl border border-blue-500 rounded-full p-2 text-gray-500 hover:text-gray-700"
+          className="absolute top-2 right-2 text-2xl border border-blue-500  rounded-full p-2 text-gray-500 dark:text-gray-200 dark:hover:text-gray-300 hover:text-gray-700"
           onClick={onClose}
         >
-          &times;
+        X
         </button>
       </div>
     </div>

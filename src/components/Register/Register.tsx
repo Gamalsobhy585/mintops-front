@@ -89,10 +89,10 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
       <meta charSet="utf-8" />
       <title>Register</title>
     </Helmet>
-    <p>{apiError && <div className='p-1 mb-4 bg-sky-200 rounded-lg text-sky-600 text-sm'>{apiError}</div>}</p>
+    <p>{apiError && <div className='p-1 mb-4 bg-sky-200 dark:bg-sky-700  rounded-lg text-sky-600 dark:text-sky-200 text-sm'>{apiError}</div>}</p>
     <div className='border-2 border-solid max-w-md py-3 px-8 mx-auto rounded-md border-slate-300'>
       <div className="max-w-xl my-10 mx-auto">
-        <h1 className='font-bold text-center text-sky-600 mb-10'>Register Now</h1>
+        <h1 className='font-bold text-center text-sky-600 dark:text-sky-200 mb-10'>Register Now</h1>
         <form onSubmit={formik.handleSubmit} className="max-w-md mx-auto">
           <div className="relative z-0 w-full mb-5 group">
             <input
@@ -110,13 +110,13 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
             />
             <label
               htmlFor="floating_name"
-              className="absolute text-sm text-gray-500 peer-focus:font-medium peer-focus:text-sky-600 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-75 origin-[0] scale-75 -translate-y-6 top-3 peer-focus:left-0"
+              className="absolute text-sm text-gray-500 peer-focus:font-medium peer-focus:text-sky-600 dark:peer-focus:text-sky-200 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-75 origin-[0] scale-75 -translate-y-6 top-3 peer-focus:left-0"
             >
               Full Name
             </label>
           </div>
           {formik.errors.name && formik.touched.name && (
-            <div className='p-1 mb-4 bg-sky-200 rounded-lg text-sky-600 text-sm'>
+            <div className='p-1 mb-4 bg-sky-200 dark:bg-sky-700 rounded-lg text-sky-600 dark:text-sky-200 text-sm'>
               {formik.errors.name}
             </div>
           )}
@@ -138,13 +138,13 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
             />
             <label
               htmlFor="floating_email"
-              className="absolute text-sm text-gray-500 peer-focus:font-medium peer-focus:text-sky-600 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-75 origin-[0] scale-75 -translate-y-6 top-3 peer-focus:left-0"
+              className="absolute text-sm text-gray-500 peer-focus:font-medium peer-focus:text-sky-600  peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-75 origin-[0] scale-75 -translate-y-6 top-3 peer-focus:left-0"
             >
               Email address
             </label>
           </div>
           {formik.errors.email && formik.touched.email && (
-            <div className='p-1 mb-4 bg-sky-200 rounded-lg text-sky-600 text-sm'>
+            <div className='p-1 mb-4 bg-sky-200 dark:bg-sky-700 rounded-lg text-sky-600 dark:text-sky-200 text-sm'>
               {formik.errors.email}
             </div>
           )}
@@ -165,17 +165,17 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
               required
             />
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
-              <i aria-label='button to show password' className={`fa ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+              <i aria-label='button to show password' className={`fa ${showPassword ? 'fa-eye dark:text-white' : 'fa-eye-slash dark:text-white'}`}></i>
             </div>
             <label
               htmlFor="password"
-              className="absolute text-sm text-gray-500 peer-focus:font-medium peer-focus:text-sky-600 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-75 origin-[0] scale-75 -translate-y-6 top-3 peer-focus:left-0"
+              className="absolute text-sm text-gray-500 peer-focus:font-medium peer-focus:text-sky-600 dark:peer-focus:text-sky-200 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-75 origin-[0] scale-75 -translate-y-6 top-3 peer-focus:left-0"
             >
               Password
             </label>
           </div>
           {formik.errors.password && formik.touched.password && (
-            <div className='p-1 mb-4 bg-sky-200 rounded-lg text-sky-600 text-sm'>
+            <div className='p-1 mb-4 bg-sky-200 dark:bg-sky-700 rounded-lg text-sky-600 dark:text-sky-200 text-sm'>
               {formik.errors.password}
             </div>
           )}
@@ -196,16 +196,16 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
               required
             />
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onClick={() => setShowPasswordConfirmation(!showPasswordConfirmation)}>
-              <i aria-label='button to show password' className={`fa ${showPasswordConfirmation ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+              <i aria-label='button to show password' className={`fa ${showPasswordConfirmation ? 'fa-eye dark:text-white' : 'fa-eye-slash dark:text-white'}`}></i>
             </div>
             <label
               htmlFor="password_confirmation"
-              className="absolute text-sm text-gray-500 peer-focus:font-medium peer-focus:text-sky-600 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-75 origin-[0] scale-75 -translate-y-6 top-3 peer-focus:left-0"
+              className="absolute text-sm text-gray-500 peer-focus:font-medium peer-focus:text-sky-600 dark:peer-focus:text-sky-200 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-75 origin-[0] scale-75 -translate-y-6 top-3 peer-focus:left-0"
             >
               Confirm Password
             </label>
           </div>
-            <p>{formik.errors.password_confirmation && formik.touched.password_confirmation && <div className='p-1 mb-4 bg-sky-200 rounded-lg text-sky-600 text-sm'>{formik.errors.password_confirmation}</div>}</p>
+            <p>{formik.errors.password_confirmation && formik.touched.password_confirmation && <div className='p-1 mb-4 bg-sky-200 dark:bg-sky-700 rounded-lg text-sky-600 text-sm'>{formik.errors.password_confirmation}</div>}</p>
 
             <div className="relative z-0 w-full mb-5 group">
               <select
@@ -222,14 +222,14 @@ function saveUserDataToLocalStorage(user: { name: string; email: string }) {
               </select>
               <label
                 htmlFor="role"
-                className="peer-focus:font-medium left-1/2 -translate-x-1/2 absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 peer-focus:text-sky-600"
+                className="peer-focus:font-medium left-1/2 -translate-x-1/2 absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 peer-focus:text-sky-600 dark:peer-focus:text-sky-200"
               >
                 Select Role
               </label>
             </div>
-            <p>{formik.errors.role && formik.touched.role && <div role='alert' className='p-1 mb-4 bg-sky-200 rounded-lg text-sky-600 text-sm'>{formik.errors.role}</div>}</p>
+            <p>{formik.errors.role && formik.touched.role && <div role='alert' className='p-1 mb-4 bg-sky-200 dark:bg-sky-700 rounded-lg text-sky-600 dark:text-sky-200 text-sm'>{formik.errors.role}</div>}</p>
 
-            <button role='button' disabled={!formik.isValid || !formik.dirty || isLoading} type="submit" className="disabled:bg-slate-400 w-full text-white hover:bg-sky-300 bg-sky-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center"> {isLoading ? <i className="fa-solid fa-spinner fa-spin"></i> : "Register"} </button>
+            <button role='button' disabled={!formik.isValid || !formik.dirty || isLoading} type="submit" className="disabled:bg-slate-200 w-full dark:disabled:bg-slate-800 dark:text-white text-black hover:bg-sky-300 dark:hover:bg-sky-900 bg-sky-600 dark:bg-sky-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center"> {isLoading ? <i className="fa-solid fa-spinner fa-spin"></i> : "Register"} </button>
           </form>
         </div>
       </div>

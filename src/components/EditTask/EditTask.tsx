@@ -191,11 +191,11 @@ const EditTask: React.FC = () => {
       <meta charSet="utf-8" />
       <title>Edit Task</title>
     </Helmet><div className="container mx-auto p-4">
-        <h2 className="text-2xl font-bold mb-4">Edit Task</h2>
+        <h2 className="text-2xl font-bold dark:text-white mb-4">Edit Task</h2>
         <form onSubmit={formik.handleSubmit} className="space-y-4">
           {/* Title Input */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Title</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Title</label>
             <input
                           aria-required='true'
 
@@ -214,7 +214,7 @@ const EditTask: React.FC = () => {
           </div>
           {/* Description Input */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Description</label>
+            <label className="block text-sm font-medium dark:text-gray-200 text-gray-700">Description</label>
             <textarea
                         aria-label='description for the task '
                         aria-required='true'
@@ -231,7 +231,7 @@ const EditTask: React.FC = () => {
           </div>
           {/* Start Date Input */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Start Date</label>
+            <label className="block text-sm font-medium dark:text-gray-200 text-gray-700">Start Date</label>
             <input
                         aria-label='start date for the task '
                         aria-required='true'
@@ -249,7 +249,7 @@ const EditTask: React.FC = () => {
           </div>
           {/* End Date Input */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">End Date</label>
+            <label className="block text-sm font-medium dark:text-gray-200 text-gray-700">End Date</label>
             <input
                         aria-label='end date for the task '
                         aria-required='true'
@@ -267,7 +267,7 @@ const EditTask: React.FC = () => {
           </div>
           {/* Status Select */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Status</label>
+            <label className="block text-sm font-medium dark:text-gray-200 text-gray-700">Status</label>
             <select
             aria-required="true"
               name="status"
@@ -287,7 +287,7 @@ const EditTask: React.FC = () => {
           </div>
           {/* Priority Select */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Priority</label>
+            <label className="block text-sm font-medium dark:text-gray-200 text-gray-700">Priority</label>
             <select
             aria-required="true"
               name="priority"
@@ -307,7 +307,7 @@ const EditTask: React.FC = () => {
           </div>
           {/* Category Select */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Category</label>
+            <label className="block text-sm font-medium dark:text-gray-200 text-gray-700">Category</label>
             <select
             aria-required="true"
               name="category_id"
@@ -330,7 +330,7 @@ const EditTask: React.FC = () => {
           </div>
           {/* Team Select */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Team</label>
+            <label className="block text-sm font-medium dark:text-gray-200 text-gray-700">Team</label>
             <select
             aria-required="true"
               name="team_id"
@@ -353,7 +353,7 @@ const EditTask: React.FC = () => {
           </div>
           {/* User/Member Select */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Member</label>
+            <label className="block text-sm font-medium dark:text-gray-200 text-gray-700">Member</label>
             <select
             aria-required="true"
               name="user_id"

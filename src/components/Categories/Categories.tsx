@@ -80,7 +80,7 @@ const Categories: React.FC = () => {
         <div className="mb-4">
           <input
             type="text"
-            className="w-full p-2 border border-slate-600 rounded"
+            className="w-full p-2 border border-slate-600  dark:border-slate-200 rounded"
             placeholder="Search categories..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -92,12 +92,12 @@ const Categories: React.FC = () => {
         {/* Recently Visited Categories Section */}
         {recentCategories?.data.length > 0 && (
           <div className="mb-8">
-            <h2 className="text-lg font-bold mb-2">Recently Visited Categories</h2>
+            <h2 className="text-lg font-bold dark:text-white mb-2">Recently Visited Categories</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
               {recentCategories.data.map((category: any) => (
                 <div
                   key={category.id}
-                  className="bg-slate-600 hover:bg-slate-300 border text-blue-200 hover:text-blue-600 border-blue-600 p-4 rounded-lg text-center cursor-pointer"
+                  className="bg-slate-600 dark:bg-slate-100 hover:bg-slate-300 dark:hover:bg-slate-200 border text-blue-200 dark:text-blue-600  hover:text-blue-600 dark:hover:text-blue-900 border-blue-600 dark:border-blue-200 p-4 rounded-lg text-center cursor-pointer"
                   onClick={() => handleCategoryClick(category.id)}
                 >
                   <h3 className="text-lg">{category.name}</h3>
@@ -108,13 +108,13 @@ const Categories: React.FC = () => {
         )}
 
         {/* Existing Categories Grid */}
-        <h2 className="text-lg font-bold mb-2">Our  Categories</h2>
+        <h2 className="text-lg font-bold dark:text-white mb-2">Our  Categories</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
           {filteredCategories?.map((category: any) => (
             <div
               key={category.id}
-              className="bg-slate-600 hover:bg-slate-300 border text-blue-200 hover:text-blue-600 border-blue-600 p-4 rounded-lg text-center cursor-pointer"
+              className="bg-slate-600 dark:bg-slate-100 hover:bg-slate-300 dark:hover:bg-slate-200 border text-blue-200 dark:text-blue-600  hover:text-blue-600 dark:hover:text-blue-900 border-blue-600 dark:border-blue-200 p-4 rounded-lg text-center cursor-pointer"
               onClick={() => handleCategoryClick(category.id)}
             >
               <h3 className="text-lg">{category.name}</h3>

@@ -48,14 +48,14 @@ const UserSelectPopup: React.FC<UserSelectPopupProps> = ({ teamId, onClose, onAd
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-      <div className="relative bg-white w-11/12 md:w-7/12 p-6 rounded shadow-lg">
-        <h2 className="text-xl font-semibold mb-4">Select a User to Add</h2>
+    <div className="fixed inset-0 bg-gray-800  bg-opacity-50 flex justify-center items-center">
+      <div className="relative bg-white dark:bg-gray-800 w-11/12 md:w-7/12 p-6 rounded shadow-lg">
+        <h2 className="text-xl dark:text-white font-semibold mb-4">Select a User to Add</h2>
         <ul>
           {users.map(user => (
             <li
               key={user.id}
-              className={`py-2 px-4 border-b cursor-pointer ${selectedUser?.id === user.id ? 'bg-sky-300' : 'hover:bg-gray-200'}`}
+              className={`py-2 dark:text-white px-4 border-b cursor-pointer ${selectedUser?.id === user.id ? 'bg-sky-300 dark:bg-sky-600' : 'hover:bg-gray-200 dark:hover:bg-sky-600'}`}
               onClick={() => setSelectedUser(user)}
             >
               {user.name}
